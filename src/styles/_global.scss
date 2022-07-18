@@ -1,3 +1,30 @@
 body {
   font-family: 'Ubuntu', sans-serif;
 }
+
+.auth-link {
+  display: inline-block;
+  text-decoration: none;
+  color: rgb(0, 175, 244);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.flex-col-center {
+  display: flex;
+  flex-direction: column !important;
+  justify-content: center;
+  align-items: center;
+}
