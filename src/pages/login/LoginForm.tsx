@@ -5,11 +5,13 @@ import * as yup from 'yup';
 import { QRCodeCanvas } from 'qrcode.react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
+import authApi from '../../axios/login';
 
 LoginForm.propTypes = {};
 
 const LoginSchema = yup.object().shape({
-  email: yup.string(),
+  username: yup.string().min(6, 'User khong duoc ngan hon 6 ky tu. Ok??').required(),
+  password: yup.string().min(6, 'Password ngan hon 6 ky tu la the lao??').required(),
 });
 
 function LoginForm() {
@@ -18,15 +20,19 @@ function LoginForm() {
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(LoginSchema) });
+  } = useForm({
+    resolver: yupResolver(LoginSchema),
+    defaultValues: { username: '', password: '' },
+  });
 
-  const handleSubmitForm = (values: any) => {
+  const handleSubmitForm = async (values: any) => {
     console.log('values :', values);
+    // const result = await authApi.login(values);
   };
 
   return (
-    <Grid container zIndex={100} spacing={4} className="loginForm" sx={{ padding: '2rem' }}>
-      <Grid xs={8}>
+    <Grid container zIndex={100} spacing={2} className="loginForm" sx={{ padding: '2rem' }}>
+      <Grid item xs={8}>
         <Button variant="text" color="inherit" startIcon={<KeyboardArrowLeftIcon />}>
           Go back
         </Button>
@@ -35,12 +41,11 @@ function LoginForm() {
         <form action="" className="form" onSubmit={handleSubmit(handleSubmitForm)}>
           <label title="">Enter your email or number</label>
           <Controller
-            name="email"
+            name="username"
             control={control}
             render={({ field }) => {
               return <TextField {...field} variant="outlined" fullWidth />;
             }}
-            defaultValue=""
           />
           <label title="">Password</label>
           <Controller
@@ -57,8 +62,8 @@ function LoginForm() {
                 />
               );
             }}
-            defaultValue=""
           />
+          {errors?.password && <p className="error">{errors.password?.message}</p>}
           <Link to="/forgotpassword" className="forgotPass auth-link">
             Forgot password
           </Link>

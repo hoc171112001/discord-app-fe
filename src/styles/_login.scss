@@ -25,7 +25,7 @@
   }
 
   .loginForm {
-    width: 60%;
+    width: 50%;
     height: 50%;
     border-radius: 0.5rem;
     position: absolute;
@@ -77,5 +77,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+  }
+
+  .forgotPass {
+    margin-top: 0.5rem;
   }
 }
