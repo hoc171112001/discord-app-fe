@@ -13,6 +13,7 @@ import {
   Select,
   TextField,
 } from '@mui/material';
+import Link from '@mui/material/Link';
 interface IProps {}
 
 /**
@@ -144,7 +145,20 @@ export const RegisterPage: FC<IProps> = (props) => {
                 </FormGroup>
               </div>
               <div className="form_control">
-                <Button variant="contained">Contained</Button>
+                <Button variant="contained" fullWidth className="button-primary">
+                  Continue
+                </Button>
+              </div>
+              <div className="form_control accept-notify-email">
+                <Link
+                  component="button"
+                  variant="body2"
+                  onClick={() => {
+                    console.info("I'm a button.");
+                  }}
+                >
+                  Have an account?
+                </Link>
               </div>
             </div>
           </div>
