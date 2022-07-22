@@ -160,6 +160,13 @@ export const RegisterPage: FC<IProps> = (props) => {
                   Have an account?
                 </Link>
               </div>
+              <div className="form_control">
+                <p className="privacy">
+                  By clicking the subscribe button, you agree to <a href="">Terms of Service</a>
+                  <span> and </span>
+                  <a href="">Privacy Policy</a>
+                </p>
+              </div>
             </div>
           </div>
         }
