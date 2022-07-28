@@ -27,7 +27,11 @@ function LoginForm() {
 
   const handleSubmitForm = async (values: any) => {
     console.log('values :', values);
-    // const result = await authApi.login(values);
+    try {
+      const result = await authApi.login(values);
+    } catch (error) {
+      console.log('error :', error);
+    }
   };
 
   return (
@@ -44,7 +48,7 @@ function LoginForm() {
             name="username"
             control={control}
             render={({ field }) => {
-              return <TextField {...field} variant="outlined" fullWidth />;
+              return <TextField {...field} variant="outlined" fullWidth size="small" />;
             }}
           />
           <label title="">Password</label>
@@ -59,6 +63,7 @@ function LoginForm() {
                   variant="outlined"
                   fullWidth
                   className="password"
+                  size="small"
                 />
               );
             }}

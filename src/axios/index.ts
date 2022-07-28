@@ -3,7 +3,7 @@ import queryString from 'query-string';
 import { getToken } from './Cookie';
 
 const axiosClient = axios.create({
-  baseURL: process.env.REACT_APP_BASE_URL_LOCAL,
+  baseURL: process.env.REACT_APP_BASE_URL,
   headers: {
     'content-type': 'application/json',
   },
