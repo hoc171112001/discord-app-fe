@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { AuthBox } from '../../shared/authBox/authBox';
+import { AuthBox } from '../../../shared/authBox/authBox';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -156,7 +156,7 @@ export const RegisterPage: FC<IProps> = (props) => {
                   component="button"
                   variant="body2"
                   onClick={() => {
-                    navigate('/login');
+                    navigate('/auth/login');
                   }}
                 >
                   Have an account?

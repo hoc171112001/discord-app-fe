@@ -4,8 +4,10 @@ import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
 import { QRCodeCanvas } from 'qrcode.react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link } from 'react-router-dom';
-import authApi from '../../axios/login';
+import { Link, useNavigate } from 'react-router-dom';
+import authApi from '../../../axios/login';
+import { useEffect } from 'react';
+import queryString from 'query-string';
 
 LoginForm.propTypes = {};
 
@@ -15,6 +17,7 @@ const LoginSchema = yup.object().shape({
 });
 
 function LoginForm() {
+  const navi = useNavigate();
   const {
     register,
     handleSubmit,
@@ -26,65 +29,76 @@ function LoginForm() {
   });
 
   const handleSubmitForm = async (values: any) => {
-    console.log('values :', values);
     try {
       const result = await authApi.login(values);
+      console.log('result :', result);
     } catch (error) {
       console.log('error :', error);
     }
   };
 
+  const onClickForgotPassword = async () => {
+    console.log(control._formValues);
+  };
+
+  useEffect(() => {
+    console.log('fkjhas');
+    if (control._formValues.username)
+      navi({ search: queryString.stringify({ username: control._formValues.username }) });
+  }, [control._formValues]);
+
   return (
-    <Grid container zIndex={100} spacing={2} className="loginForm" sx={{ padding: '2rem' }}>
-      <Grid item xs={8}>
-        <Button variant="text" color="inherit" startIcon={<KeyboardArrowLeftIcon />}>
-          Go back
-        </Button>
-        <h3 className="heading">Welcome back!</h3>
+    <Grid container zIndex={100} className="loginForm" sx={{ padding: '2rem' }}>
+      <Grid item xs={7}>
+        <h3 className="heading font-large">Welcome back!</h3>
         <p className="description">We're so excited to see you again!</p>
         <form action="" className="form" onSubmit={handleSubmit(handleSubmitForm)}>
-          <label title="">Enter your email or number</label>
-          <Controller
-            name="username"
-            control={control}
-            render={({ field }) => {
-              return <TextField {...field} variant="outlined" fullWidth size="small" />;
-            }}
-          />
-          <label title="">Password</label>
-          <Controller
-            name="password"
-            control={control}
-            render={({ field }) => {
-              return (
-                <TextField
-                  {...field}
-                  type="password"
-                  variant="outlined"
-                  fullWidth
-                  className="password"
-                  size="small"
-                />
-              );
-            }}
-          />
-          {errors?.password && <p className="error">{errors.password?.message}</p>}
-          <Link to="/forgotpassword" className="forgotPass auth-link">
-            Forgot password
-          </Link>
+          <div className="form_control">
+            <label title="">Enter your email or number</label>
+            <Controller
+              name="username"
+              control={control}
+              render={({ field }) => {
+                return <TextField {...field} variant="outlined" fullWidth size="small" />;
+              }}
+            />
+          </div>
+          <div className="form_control">
+            <label title="">Password</label>
+            <Controller
+              name="password"
+              control={control}
+              render={({ field }) => {
+                return (
+                  <TextField
+                    {...field}
+                    type="password"
+                    variant="outlined"
+                    fullWidth
+                    className="password"
+                    size="small"
+                  />
+                );
+              }}
+            />
+          </div>
+          {/* {errors?.password && <p className="error">{errors.password?.message}</p>} */}
+          <div className="auth-link font-small mt-8" onClick={onClickForgotPassword}>
+            Forgot password?
+          </div>
           <Button type="submit" fullWidth variant="contained" sx={{ marginTop: 2 }}>
             Login
           </Button>
         </form>
 
         <Box sx={{ marginTop: 2 }}>
-          <span>Need an account </span>
-          <Link className="register auth-link" to="/register">
+          <span className="font-small">Need an account ? </span>
+          <Link className="register auth-link font-small" to="/auth/register">
             Register
           </Link>
         </Box>
       </Grid>
-      <Grid item xs={4} className="flex-col-center">
+      <Grid item xs={5} className="flex-col-center" style={{ paddingLeft: '3rem' }}>
         <Box className="flex-center" component="div" sx={{ width: '100%', position: 'relative' }}>
           <QRCodeCanvas
             value="https://discord.com/downloadddddddddddd"
@@ -105,7 +119,7 @@ function LoginForm() {
           Log in with QR Code
         </Box>
 
-        <Box className="text-center login-qr-info">
+        <Box className="text-center login-qr-info font-small">
           Scan this with the <strong>Discord mobile app</strong> to log in instantly.
         </Box>
       </Grid>

@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import LoginPage from './pages/login';
-import { RegisterPage } from './pages/register';
+import LoginPage from './pages/auth/login';
+import { RegisterPage } from './pages/auth/register';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import ForgotPassword from './pages/forgotPassword';
+import AuthPrivate from './pages/auth';
 
 const darkTheme = createTheme({
   palette: {
@@ -17,9 +17,10 @@ export default function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
-        <Route path="/forgotpassword" element={<ForgotPassword />} />
+        <Route path="auth" element={<AuthPrivate />}>
+          <Route path="register" element={<RegisterPage />} />
+          <Route path="login" element={<LoginPage />} />
+        </Route>
       </Routes>
     </ThemeProvider>
   );

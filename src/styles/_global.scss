@@ -9,6 +9,7 @@ body {
 
   &:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 }
 
@@ -27,4 +28,18 @@ body {
   flex-direction: column !important;
   justify-content: center;
   align-items: center;
+}
+
+// font
+.font-small {
+  font-size: 14px;
+}
+
+.font-large {
+  font-size: 25px;
+}
+
+// space
+.mt-8 {
+  margin-top: 8px;
 }

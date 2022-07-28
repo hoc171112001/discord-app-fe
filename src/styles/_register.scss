@@ -39,46 +39,48 @@
         flex-direction: column;
         justify-content: center;
 
-        .form_control {
-            width: 100%;
 
-            .label_textfield {
-                line-height: 32px;
-                font-weight: 500;
-                font-size: 12px;
-                color: rgb(228, 228, 228);
-                text-transform: uppercase;
-            }
+    }
+}
 
-            .date_birth {
-                margin-top: 2px;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+.form_control {
+    width: 100%;
 
-                .date_birth--item {
-                    flex: 32%;
-                    max-width: 32%;
-                }
+    .label_textfield {
+        line-height: 32px;
+        font-weight: 500;
+        font-size: 12px;
+        color: rgb(228, 228, 228);
+        text-transform: uppercase;
+    }
 
-                label {
-                    color: #bbb !important;
-                }
+    .date_birth {
+        margin-top: 2px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
 
-                ul {
-                    background: #000 !important;
-                }
-
-                li {
-                    color: #fff !important;
-                }
-            }
+        .date_birth--item {
+            flex: 32%;
+            max-width: 32%;
         }
 
-        .form_control+.form_control {
-            margin-top: 20px;
+        label {
+            color: #bbb !important;
+        }
+
+        ul {
+            background: #000 !important;
+        }
+
+        li {
+            color: #fff !important;
         }
     }
+}
+
+.form_control+.form_control {
+    margin-top: 20px;
 }
 
 .text_full {
