@@ -25,21 +25,19 @@
   }
 
   .loginForm {
-    width: 60%;
-    height: 50%;
+    width: 50%;
     border-radius: 0.5rem;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: #36393f;
-    color: #fff;
     .heading {
       text-align: center;
     }
 
     .description {
-      color: #b9bbbe;
+      color: $description_text;
       text-align: center;
     }
 
@@ -77,5 +75,9 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 5;
+  }
+
+  .forgotPass {
+    margin-top: 0.5rem;
   }
 }
