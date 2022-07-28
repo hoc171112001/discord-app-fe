@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { AuthBox } from '../../shared/authBox/authBox';
 import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Checkbox,
@@ -22,6 +23,7 @@ interface IProps {}
  **/
 
 export const RegisterPage: FC<IProps> = (props) => {
+  const navigate = useNavigate();
   const fromToNumber = (from: number, to: number) => {
     const arr = [];
     for (let i = from; i <= to; i++) {
@@ -154,7 +156,7 @@ export const RegisterPage: FC<IProps> = (props) => {
                   component="button"
                   variant="body2"
                   onClick={() => {
-                    console.info("I'm a button.");
+                    navigate('/login');
                   }}
                 >
                   Have an account?
