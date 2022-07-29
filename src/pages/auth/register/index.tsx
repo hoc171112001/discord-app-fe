@@ -38,14 +38,6 @@ export const RegisterPage: FC<IProps> = (props) => {
 
   return (
     <AuthBox
-      header={
-        <div className="form_header">
-          <div className="back__button">
-            <KeyboardArrowLeftIcon />
-            <span>Back</span>
-          </div>
-        </div>
-      }
       body={
         <div className="form_register">
           <h1 className="heading">Create an account</h1>
