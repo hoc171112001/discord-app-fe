@@ -3,6 +3,7 @@ import LoginPage from './pages/auth/login';
 import { RegisterPage } from './pages/auth/register';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AuthPrivate from './pages/auth';
+import { ResetPassword } from './pages/auth/reset';
 
 const darkTheme = createTheme({
   palette: {
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="auth" element={<AuthPrivate />}>
           <Route path="register" element={<RegisterPage />} />
           <Route path="login" element={<LoginPage />} />
+          <Route path="reset" element={<ResetPassword />} />
         </Route>
       </Routes>
     </ThemeProvider>

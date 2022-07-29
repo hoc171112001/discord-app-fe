@@ -10,9 +10,6 @@ index.propTypes = {
 function index() {
   return (
     <Box className="login">
-      <div className="background">
-        <img src="/assets/images/login/login_background.svg" alt="background" />
-      </div>
       <LoginForm />
     </Box>
   );
