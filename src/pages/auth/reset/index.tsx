@@ -1,5 +1,8 @@
 import { Button, TextField } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useState } from 'react';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { mainApi } from '../../../axios/mainApi';
+import { RESET_PASSWORD_URL } from '../../../constants';
 import { AuthBox } from '../../../shared/authBox/authBox';
 
 interface IProps {}
@@ -10,6 +13,23 @@ interface IProps {}
  **/
 
 export const ResetPassword: FC<IProps> = (props) => {
+  const [newPass, setNewPass] = useState<string>('');
+  const [sParams] = useSearchParams();
+  const onPasswordChange = (event: any) => {
+    setNewPass(event.target.value);
+  };
+  const onClickChangePass = async () => {
+    console.log('location', sParams.get('token'));
+    try {
+      const data = await mainApi.postData(RESET_PASSWORD_URL, {
+        token: sParams.get('token'),
+        newPassword: newPass,
+      });
+      console.log('data :', data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <AuthBox
       body={
@@ -23,10 +43,22 @@ export const ResetPassword: FC<IProps> = (props) => {
               <label htmlFor="fullWidth" className="label_textfield">
                 new password
               </label>
-              <TextField size="small" id="fullWidth" className="text_full" type="password" />
+              <TextField
+                size="small"
+                id="fullWidth"
+                className="text_full"
+                type="password"
+                onChange={onPasswordChange}
+              />
             </div>
             <div className="form_control">
-              <Button variant="contained" fullWidth className="button-primary">
+              <Button
+                variant="contained"
+                fullWidth
+                className="button-primary"
+                disabled={!(newPass.length > 3)}
+                onClick={onClickChangePass}
+              >
                 Change Password
               </Button>
             </div>

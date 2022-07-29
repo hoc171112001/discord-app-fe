@@ -4,6 +4,9 @@ import { RegisterPage } from './pages/auth/register';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import AuthPrivate from './pages/auth';
 import { ResetPassword } from './pages/auth/reset';
+import { ModalConfirm } from './shared/modalConfirm';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/store';
 
 const darkTheme = createTheme({
   palette: {
@@ -15,6 +18,8 @@ const darkTheme = createTheme({
   },
 });
 export default function App() {
+  const { visible, description, title, onClick } = useSelector((state: RootState) => state.modal);
+
   return (
     <ThemeProvider theme={darkTheme}>
       <Routes>
@@ -24,6 +29,12 @@ export default function App() {
           <Route path="reset" element={<ResetPassword />} />
         </Route>
       </Routes>
+      <ModalConfirm
+        visible={visible}
+        title={title}
+        description={description}
+        onClickAccept={onClick}
+      />
     </ThemeProvider>
   );
 }

@@ -4,6 +4,7 @@ interface IProps {
   width?: string;
   header?: any;
   body?: any;
+  style?: any;
 }
 
 /**
@@ -13,7 +14,7 @@ interface IProps {
 
 export const AuthBox: FC<IProps> = (props) => {
   return (
-    <div style={{ width: props.width || '480px' }} className={styles.authbox}>
+    <div style={{ width: props.width || '480px', ...props.style }} className={styles.authbox}>
       {props.header}
       {props.body}
     </div>

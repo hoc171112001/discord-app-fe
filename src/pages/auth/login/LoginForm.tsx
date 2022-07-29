@@ -8,6 +8,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import authApi from '../../../axios/login';
 import { useEffect } from 'react';
 import queryString from 'query-string';
+import { mainApi } from '../../../axios/mainApi';
+import { FORGOT_PASSWORD_URL } from '../../../constants';
+import { useDispatch } from 'react-redux';
+import { openModal, registryConfirm } from '../../../redux/modalSlice';
 
 LoginForm.propTypes = {};
 
@@ -38,7 +42,14 @@ function LoginForm() {
   };
 
   const onClickForgotPassword = async () => {
-    console.log(control._formValues);
+    try {
+      const data = await mainApi.postData(FORGOT_PASSWORD_URL, {
+        username: control._formValues.username,
+      });
+      console.log('data :', data);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -47,6 +58,12 @@ function LoginForm() {
       navi({ search: queryString.stringify({ username: control._formValues.username }) });
   }, [control._formValues]);
 
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(openModal({ description: 'asdkjagdja', title: 'kljhfjshdk' }));
+  // }, []);
+
   return (
     <Grid container zIndex={100} className="loginForm">
       <Grid item xs={7}>
@@ -54,7 +71,9 @@ function LoginForm() {
         <p className="description">We're so excited to see you again!</p>
         <form action="" className="form" onSubmit={handleSubmit(handleSubmitForm)}>
           <div className="form_control">
-            <label title="">Enter your email or number</label>
+            <label title="" className="label_textfield">
+              Enter your email or number
+            </label>
             <Controller
               name="username"
               control={control}
@@ -64,7 +83,9 @@ function LoginForm() {
             />
           </div>
           <div className="form_control">
-            <label title="">Password</label>
+            <label title="" className="label_textfield">
+              Password
+            </label>
             <Controller
               name="password"
               control={control}

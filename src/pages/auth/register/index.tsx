@@ -130,7 +130,9 @@ export const RegisterPage: FC<IProps> = (props) => {
                   control={<Checkbox defaultChecked />}
                   className="notify_check"
                   label={
-                    <span style={{ fontSize: '12px', lineHeight: '12px' }}>
+                    <span
+                      style={{ fontSize: '12px', lineHeight: '12px', textTransform: 'capitalize' }}
+                    >
                       (Optional) Accept emails with Discord updates, tips, and special offers
                     </span>
                   }
