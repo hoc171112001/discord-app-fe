@@ -1,12 +1,14 @@
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import ProtectedComponent from './components/layouts/ProtectedComponent';
+import AuthPrivate from './pages/auth';
 import LoginPage from './pages/auth/login';
 import { RegisterPage } from './pages/auth/register';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import AuthPrivate from './pages/auth';
 import { ResetPassword } from './pages/auth/reset';
-import { ModalConfirm } from './shared/modalConfirm';
-import { useSelector } from 'react-redux';
+import HomePage from './pages/homepage';
 import { RootState } from './redux/store';
+import { ModalConfirm } from './shared/modalConfirm';
 
 const darkTheme = createTheme({
   palette: {
@@ -17,7 +19,8 @@ const darkTheme = createTheme({
     },
   },
 });
-export default function App() {
+
+function App() {
   const { visible, description, title, onClick } = useSelector((state: RootState) => state.modal);
 
   return (
@@ -27,6 +30,9 @@ export default function App() {
           <Route path="register" element={<RegisterPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="reset" element={<ResetPassword />} />
+        </Route>
+        <Route element={<ProtectedComponent />}>
+          <Route path="/homepage" element={<HomePage />} />
         </Route>
       </Routes>
       <ModalConfirm
@@ -38,3 +44,5 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+export default App;

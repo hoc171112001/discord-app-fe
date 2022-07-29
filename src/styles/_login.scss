@@ -1,5 +1,4 @@
 .loginForm {
-
   .heading {
     text-align: center;
   }
@@ -26,6 +25,16 @@
       text-decoration: underline;
     }
   }
+
+  .label_textfield.has_error {
+    color: $error-color !important;
+  }
+
+  .error {
+    color: inherit;
+    text-transform: capitalize !important;
+    font-style: italic;
+  }
 }
 
 .login-qr-heading {
@@ -49,8 +58,6 @@
 .forgotPass {
   margin-top: 0.5rem;
 }
-
-
 
 .heading-formreset {
   img {
