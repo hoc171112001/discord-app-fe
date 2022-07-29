@@ -18,7 +18,6 @@ export const ResetPassword: FC<IProps> = (props) => {
             <img src="/assets/images/login/reset.svg" alt="" />
             <h1 className="heading">Change your password</h1>
           </div>
-          ` `
           <div className="form_body">
             <div className="form_control">
               <label htmlFor="fullWidth" className="label_textfield">
