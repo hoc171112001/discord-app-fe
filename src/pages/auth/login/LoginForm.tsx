@@ -48,7 +48,7 @@ function LoginForm() {
   }, [control._formValues]);
 
   return (
-    <Grid container zIndex={100} className="loginForm" sx={{ padding: '2rem' }}>
+    <Grid container zIndex={100} className="loginForm">
       <Grid item xs={7}>
         <h3 className="heading font-large">Welcome back!</h3>
         <p className="description">We're so excited to see you again!</p>
