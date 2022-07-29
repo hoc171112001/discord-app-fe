@@ -10,7 +10,6 @@ interface IProps {
   acceptButton?: boolean;
   acceptButtonLabel?: any;
   description?: any;
-  onClickAccept?: any;
 }
 
 /**
@@ -25,7 +24,6 @@ export const ModalConfirm: FC<IProps> = ({
   acceptButtonLabel = 'Accept',
   acceptButton = true,
   description = '',
-  onClickAccept,
 }) => {
   const dispatch = useDispatch();
   return (
@@ -46,7 +44,6 @@ export const ModalConfirm: FC<IProps> = ({
                       style={{ textAlign: 'right', textTransform: 'capitalize' }}
                       onClick={() => {
                         dispatch(closeModal());
-                        onClickAccept && onClickAccept();
                       }}
                     >
                       {acceptButtonLabel}

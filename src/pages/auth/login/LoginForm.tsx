@@ -1,4 +1,3 @@
-import KeyboardArrowLeftIcon from '@mui/icons-material/KeyboardArrowLeft';
 import { Box, Button, Grid, TextField } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -11,7 +10,7 @@ import queryString from 'query-string';
 import { mainApi } from '../../../axios/mainApi';
 import { FORGOT_PASSWORD_URL } from '../../../constants';
 import { useDispatch } from 'react-redux';
-import { openModal, registryConfirm } from '../../../redux/modalSlice';
+import { useModal } from '../../../shared/Hooks/modal';
 
 LoginForm.propTypes = {};
 
@@ -21,6 +20,7 @@ const LoginSchema = yup.object().shape({
 });
 
 function LoginForm() {
+  const modal = useModal();
   const navi = useNavigate();
   const {
     register,
@@ -46,23 +46,16 @@ function LoginForm() {
       const data = await mainApi.postData(FORGOT_PASSWORD_URL, {
         username: control._formValues.username,
       });
-      console.log('data :', data);
+      modal.openModalConfirm('Instructions sent!', data.data.message, true, 'ok');
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    console.log('fkjhas');
     if (control._formValues.username)
       navi({ search: queryString.stringify({ username: control._formValues.username }) });
   }, [control._formValues]);
-
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(openModal({ description: 'asdkjagdja', title: 'kljhfjshdk' }));
-  // }, []);
 
   return (
     <Grid container zIndex={100} className="loginForm">
