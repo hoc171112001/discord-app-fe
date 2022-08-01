@@ -2,8 +2,13 @@ import axios from 'axios';
 import queryString from 'query-string';
 import { changeAuthState } from '../redux/authSlice';
 import { store } from '../redux/store';
-import { isValidateToken } from '../utils';
-import { getRefreshToken, getTokenFromCookie, setCookieRefreshToken } from './Cookie';
+import { isValidToken } from '../utils';
+import {
+  getRefreshToken,
+  getTokenFromCookie,
+  setCookieRefreshToken,
+  setTokenToCookie,
+} from './Cookie';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -19,15 +24,15 @@ const axiosClient = axios.create({
 // Interceptors
 axiosClient.interceptors.request.use(async (req: any) => {
   let authTokens = getTokenFromCookie() || '';
-  console.log('authTokens :', authTokens);
 
   if (!authTokens) {
     // check if refresh token is expired
     const refreshToken: any = getRefreshToken();
-    if (!refreshToken) return req;
-
-    const isExpired = isValidateToken(refreshToken);
-    if (!isExpired) return req;
+    const isExpired = isValidToken(refreshToken);
+    if (!refreshToken || !isExpired) {
+      store.dispatch(changeAuthState(false));
+      return;
+    }
 
     try {
       // get refresh token
@@ -36,6 +41,7 @@ axiosClient.interceptors.request.use(async (req: any) => {
       });
 
       setCookieRefreshToken(response.data.refToken);
+      setTokenToCookie(response.data.access);
       req.headers.Authorization = `Bearer ${response.data.access}`;
 
       return req;
@@ -43,7 +49,7 @@ axiosClient.interceptors.request.use(async (req: any) => {
       store.dispatch(changeAuthState(false));
     }
   } else {
-    if (isValidateToken(authTokens)) {
+    if (isValidToken(authTokens)) {
       req.headers.Authorization = `Bearer ${authTokens}`;
       store.dispatch(changeAuthState(true));
     }
