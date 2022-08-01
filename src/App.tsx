@@ -21,7 +21,9 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const { visible, description, title, onClick } = useSelector((state: RootState) => state.modal);
+  const { visible, description, title, acceptButton, acceptButtonLabel } = useSelector(
+    (state: RootState) => state.modal,
+  );
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -39,7 +41,8 @@ function App() {
         visible={visible}
         title={title}
         description={description}
-        onClickAccept={onClick}
+        acceptButton={acceptButton}
+        acceptButtonLabel={acceptButtonLabel}
       />
     </ThemeProvider>
   );

@@ -14,6 +14,7 @@ import authApi from '../../../axios/login';
 import { mainApi } from '../../../axios/mainApi';
 import { FORGOT_PASSWORD_URL } from '../../../constants';
 import { changeAuthState } from '../../../redux/authSlice';
+import { useModal } from '../../../shared/Hooks/modal';
 
 LoginForm.propTypes = {};
 
@@ -25,6 +26,7 @@ const LoginSchema = yup.object().shape({
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const modal = useModal();
 
   const [hasErrorLogin, setHasErrorLogin] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -64,7 +66,7 @@ function LoginForm() {
       const data = await mainApi.postData(FORGOT_PASSWORD_URL, {
         username: control._formValues.username,
       });
-      console.log('data :', data);
+      modal.openModalConfirm('Instructions sent!', data.data.message, true, 'ok');
     } catch (err) {
       console.log(err);
     }
