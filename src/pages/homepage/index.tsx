@@ -1,6 +1,4 @@
-import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import axiosClient from '../../axios';
+import { useEffect } from 'react';
 import { mainApi } from '../../axios/mainApi';
 
 HomePage.propTypes = {};
