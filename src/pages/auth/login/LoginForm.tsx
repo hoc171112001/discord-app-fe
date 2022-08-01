@@ -1,15 +1,19 @@
-import { Box, Button, Grid, TextField } from '@mui/material';
-import { Controller, useForm } from 'react-hook-form';
-import * as yup from 'yup';
-import { QRCodeCanvas } from 'qrcode.react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Link, useNavigate } from 'react-router-dom';
-import authApi from '../../../axios/login';
-import { useEffect } from 'react';
+import { LoadingButton } from '@mui/lab';
+import { Box, Grid, TextField } from '@mui/material';
+import classnames from 'classnames';
+import { QRCodeCanvas } from 'qrcode.react';
 import queryString from 'query-string';
+import { useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import * as yup from 'yup';
+import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/Cookie';
+import authApi from '../../../axios/login';
 import { mainApi } from '../../../axios/mainApi';
 import { FORGOT_PASSWORD_URL } from '../../../constants';
-import { useDispatch } from 'react-redux';
+import { changeAuthState } from '../../../redux/authSlice';
 import { useModal } from '../../../shared/Hooks/modal';
 
 LoginForm.propTypes = {};
@@ -20,8 +24,13 @@ const LoginSchema = yup.object().shape({
 });
 
 function LoginForm() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const modal = useModal();
-  const navi = useNavigate();
+
+  const [hasErrorLogin, setHasErrorLogin] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState(false);
+
   const {
     register,
     handleSubmit,
@@ -33,11 +42,22 @@ function LoginForm() {
   });
 
   const handleSubmitForm = async (values: any) => {
+    setIsLoading(true);
     try {
-      const result = await authApi.login(values);
-      console.log('result :', result);
+      const { data }: any = await authApi.login(values);
+      // save user info to local storage
+      setTokenToCookie(data.accessToken);
+      setCookieRefreshToken(data.refToken);
+
+      setHasErrorLogin(false);
+      // change auth state
+      dispatch(changeAuthState(true));
+      setIsLoading(false);
+      navigate('/homepage');
     } catch (error) {
-      console.log('error :', error);
+      setIsLoading(false);
+      setHasErrorLogin(true);
+      dispatch(changeAuthState(false));
     }
   };
 
@@ -53,9 +73,15 @@ function LoginForm() {
   };
 
   useEffect(() => {
-    if (control._formValues.username)
-      navi({ search: queryString.stringify({ username: control._formValues.username }) });
+    // pass email or username to url (ex: ...email=hoangvanhoc@gmail.com)
+    if (control._formValues.username) {
+      navigate({ search: queryString.stringify({ username: control._formValues.username }) });
+    }
   }, [control._formValues]);
+
+  // useEffect(() => {
+  //   dispatch(openModal({ description: 'asdkjagdja', title: 'kljhfjshdk' }));
+  // }, []);
 
   return (
     <Grid container zIndex={100} className="loginForm">
@@ -64,8 +90,9 @@ function LoginForm() {
         <p className="description">We're so excited to see you again!</p>
         <form action="" className="form" onSubmit={handleSubmit(handleSubmitForm)}>
           <div className="form_control">
-            <label title="" className="label_textfield">
-              Enter your email or number
+            <label className={classnames({ has_error: hasErrorLogin }, 'label_textfield')}>
+              Enter your email or number{' '}
+              {hasErrorLogin && <span className="error">- login or password invalid.</span>}
             </label>
             <Controller
               name="username"
@@ -76,8 +103,9 @@ function LoginForm() {
             />
           </div>
           <div className="form_control">
-            <label title="" className="label_textfield">
-              Password
+            <label title="" className={classnames({ has_error: hasErrorLogin }, 'label_textfield')}>
+              Password{' '}
+              {hasErrorLogin && <span className="error">- login or password invalid.</span>}
             </label>
             <Controller
               name="password"
@@ -100,9 +128,16 @@ function LoginForm() {
           <div className="auth-link font-small mt-8" onClick={onClickForgotPassword}>
             Forgot password?
           </div>
-          <Button type="submit" fullWidth variant="contained" sx={{ marginTop: 2 }}>
+          <LoadingButton
+            loading={isLoading}
+            loadingIndicator="Loading..."
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ marginTop: 2, textTransform: 'capitalize' }}
+          >
             Login
-          </Button>
+          </LoadingButton>
         </form>
 
         <Box sx={{ marginTop: 2 }}>
