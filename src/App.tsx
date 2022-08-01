@@ -1,14 +1,17 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
+import { getTokenFromCookie } from './axios/Cookie';
 import ProtectedComponent from './components/layouts/ProtectedComponent';
 import AuthPrivate from './pages/auth';
 import LoginPage from './pages/auth/login';
 import { RegisterPage } from './pages/auth/register';
 import { ResetPassword } from './pages/auth/reset';
 import HomePage from './pages/homepage';
+import { changeAuthState } from './redux/authSlice';
 import { RootState } from './redux/store';
 import { ModalConfirm } from './shared/modalConfirm';
+import { isValidToken } from './utils';
 
 const darkTheme = createTheme({
   palette: {
@@ -21,7 +24,10 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const dispatch = useDispatch();
   const { visible, description, title, onClick } = useSelector((state: RootState) => state.modal);
+
+  dispatch(changeAuthState(isValidToken(getTokenFromCookie())));
 
   return (
     <ThemeProvider theme={darkTheme}>
