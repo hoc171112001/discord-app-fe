@@ -31,7 +31,7 @@ axiosClient.interceptors.request.use(async (req: any) => {
     const isExpired = isValidToken(refreshToken);
     if (!refreshToken || !isExpired) {
       store.dispatch(changeAuthState(false));
-      return;
+      return req;
     }
 
     try {
@@ -41,8 +41,8 @@ axiosClient.interceptors.request.use(async (req: any) => {
       });
 
       setCookieRefreshToken(response.data.refToken);
-      setTokenToCookie(response.data.access);
-      req.headers.Authorization = `Bearer ${response.data.access}`;
+      setTokenToCookie(response.data.accessToken);
+      req.headers.Authorization = `Bearer ${response.data.accessToken}`;
 
       return req;
     } catch (error) {
