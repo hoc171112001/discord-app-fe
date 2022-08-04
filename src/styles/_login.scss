@@ -37,6 +37,16 @@
   }
 }
 
+.label_textfield.has_error {
+  color: $error-color !important;
+}
+
+.error {
+  color: inherit;
+  text-transform: capitalize !important;
+  font-style: italic;
+}
+
 .login-qr-heading {
   margin-top: 1rem;
   font-size: 25px;

@@ -27,7 +27,7 @@ function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const modal = useModal();
-
+  const [hasErrorForgotPassword, sethasErrorForgotPassword] = useState<boolean>(false);
   const [hasErrorLogin, setHasErrorLogin] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -53,7 +53,7 @@ function LoginForm() {
       // change auth state
       dispatch(changeAuthState(true));
       setIsLoading(false);
-      navigate('/homepage');
+      navigate('/app');
     } catch (error) {
       setIsLoading(false);
       setHasErrorLogin(true);
@@ -63,10 +63,19 @@ function LoginForm() {
 
   const onClickForgotPassword = async () => {
     try {
-      const data = await mainApi.postData(FORGOT_PASSWORD_URL, {
-        username: control._formValues.username,
-      });
-      modal.openModalConfirm('Instructions sent!', data.data.message, true, 'ok');
+      if (control._formValues?.username) {
+        const data = await mainApi.postData(FORGOT_PASSWORD_URL, {
+          username: control._formValues.username,
+        });
+        if (data.data.status != 'fail') {
+          modal.openModalConfirm('Instructions sent!', data.data.message, true, 'Accept');
+        } else {
+          modal.openModalConfirm('Failed occurred', data.data.message, true, 'Accept');
+        }
+        sethasErrorForgotPassword(false);
+      } else {
+        sethasErrorForgotPassword(true);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -90,15 +99,29 @@ function LoginForm() {
         <p className="description">We're so excited to see you again!</p>
         <form action="" className="form" onSubmit={handleSubmit(handleSubmitForm)}>
           <div className="form_control">
-            <label className={classnames({ has_error: hasErrorLogin }, 'label_textfield')}>
+            <label
+              className={classnames(
+                { has_error: hasErrorLogin || hasErrorForgotPassword },
+                'label_textfield',
+              )}
+            >
               Enter your email or number{' '}
               {hasErrorLogin && <span className="error">- login or password invalid.</span>}
+              {hasErrorForgotPassword && <span className="error">- This field is mandatory</span>}
             </label>
             <Controller
               name="username"
               control={control}
               render={({ field }) => {
-                return <TextField {...field} variant="outlined" fullWidth size="small" />;
+                return (
+                  <TextField
+                    {...field}
+                    variant="outlined"
+                    fullWidth
+                    size="small"
+                    className="text_full"
+                  />
+                );
               }}
             />
           </div>
@@ -117,7 +140,7 @@ function LoginForm() {
                     type="password"
                     variant="outlined"
                     fullWidth
-                    className="password"
+                    className="password text_full"
                     size="small"
                   />
                 );
@@ -134,7 +157,8 @@ function LoginForm() {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ marginTop: 2, textTransform: 'capitalize' }}
+            sx={{ marginTop: 2, textTransform: 'uppercase' }}
+            className="button-primary"
           >
             Login
           </LoadingButton>
