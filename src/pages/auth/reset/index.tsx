@@ -1,9 +1,11 @@
 import { Button, TextField } from '@mui/material';
+import classNames from 'classnames';
 import React, { FC, useState } from 'react';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { mainApi } from '../../../axios/mainApi';
 import { RESET_PASSWORD_URL } from '../../../constants';
 import { AuthBox } from '../../../shared/authBox/authBox';
+import { useModal } from '../../../shared/Hooks/modal';
 
 interface IProps {}
 
@@ -15,19 +17,25 @@ interface IProps {}
 export const ResetPassword: FC<IProps> = (props) => {
   const [newPass, setNewPass] = useState<string>('');
   const [sParams] = useSearchParams();
+  const [err, setErr] = useState('');
+  const modal = useModal();
+  const nav = useNavigate();
   const onPasswordChange = (event: any) => {
     setNewPass(event.target.value);
   };
   const onClickChangePass = async () => {
-    console.log('location', sParams.get('token'));
     try {
       const data = await mainApi.postData(RESET_PASSWORD_URL, {
         token: sParams.get('token'),
         newPassword: newPass,
       });
-      console.log('data :', data);
-    } catch (err) {
-      console.log(err);
+      if (data.data.status != 'fail') {
+        nav('/auth/login');
+      } else {
+        setErr(data.data?.message);
+      }
+    } catch (err: any) {
+      setErr(err.data.message);
     }
   };
   return (
@@ -40,8 +48,12 @@ export const ResetPassword: FC<IProps> = (props) => {
           </div>
           <div className="form_body">
             <div className="form_control">
-              <label htmlFor="fullWidth" className="label_textfield">
+              <label
+                htmlFor="fullWidth"
+                className={classNames({ has_error: !!err }, 'label_textfield')}
+              >
                 new password
+                {err && <span className="error"> - {err}</span>}
               </label>
               <TextField
                 size="small"

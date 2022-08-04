@@ -6,3 +6,9 @@ export function isValidToken(token: any) {
   const userInfo: any = jwt_decode(token);
   return dayjs.unix(userInfo.exp).diff(dayjs()) > 1;
 }
+
+export const convertDate = (year: any, month: any, day: any) => {
+  if (Number(month) > 10) month = '0' + month;
+  if (Number(day) > 10) day = '0' + day;
+  return dayjs(`${year}-${month}-${day}`).format();
+};

@@ -27,7 +27,7 @@
   }
 
   .label_textfield.has_error {
-    color: $error-color !important;
+    color: $error-color  !important;
   }
 
   .error {
@@ -35,6 +35,16 @@
     text-transform: capitalize !important;
     font-style: italic;
   }
+}
+
+.label_textfield.has_error {
+  color: $error-color  !important;
+}
+
+.error {
+  color: inherit;
+  text-transform: capitalize !important;
+  font-style: italic;
 }
 
 .login-qr-heading {

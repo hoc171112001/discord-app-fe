@@ -7,7 +7,7 @@ import AuthPrivate from './pages/auth';
 import LoginPage from './pages/auth/login';
 import { RegisterPage } from './pages/auth/register';
 import { ResetPassword } from './pages/auth/reset';
-import HomePage from './pages/homepage';
+import HomePage from './pages/app';
 import { changeAuthState } from './redux/authSlice';
 import { RootState } from './redux/store';
 import { ModalConfirm } from './shared/modalConfirm';
@@ -41,7 +41,7 @@ function App() {
           <Route path="reset" element={<ResetPassword />} />
         </Route>
         <Route element={<ProtectedComponent />}>
-          <Route path="/homepage" element={<HomePage />} />
+          <Route path="/app" element={<HomePage />} />
         </Route>
       </Routes>
       <ModalConfirm
