@@ -1,123 +1,120 @@
 .register_wrapper {
-    width: 100%;
-    height: 100vh;
-    background: url("../../public/assets/images/login/login_background.svg") no-repeat;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url('../../public/assets/images/login/login_background.svg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .form_body {
-        margin-top: 16px;
-    }
+  .form_body {
+    margin-top: 16px;
+  }
 }
 
 .back__button {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 
-    &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
-
 .form_register {
-    .heading {
-        font-size: 25px;
-        line-height: 30px;
-        font-weight: 700;
-        text-align: center;
-        margin-top: 16px;
-    }
+  .heading {
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 16px;
+  }
 
-    .form_body {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-
-    }
+  .form_body {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .form_control {
-    width: 100%;
+  width: 100%;
 
-    .label_textfield {
-        line-height: 32px;
-        font-weight: 500;
-        font-size: 12px;
-        color: rgb(228, 228, 228);
-        text-transform: uppercase;
+  .label_textfield {
+    line-height: 32px;
+    font-weight: 500;
+    font-size: 12px;
+    color: rgb(228, 228, 228);
+    text-transform: uppercase;
+  }
+
+  .date_birth {
+    margin-top: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .date_birth--item {
+      flex: 32%;
+      max-width: 32%;
     }
 
-    .date_birth {
-        margin-top: 2px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        .date_birth--item {
-            flex: 32%;
-            max-width: 32%;
-        }
-
-        label {
-            color: #bbb !important;
-        }
-
-        ul {
-            background: #000 !important;
-        }
-
-        li {
-            color: #fff !important;
-        }
+    label {
+      color: #bbb !important;
     }
+
+    ul {
+      background: #000 !important;
+    }
+
+    li {
+      color: #fff !important;
+    }
+  }
 }
 
-.form_control+.form_control {
-    margin-top: 18px;
+.form_control + .form_control {
+  margin-top: 18px;
 }
 
 .text_full {
-    width: 100% !important;
-    background-color: #202225;
-    border-radius: 4px !important;
+  width: 100% !important;
+  background-color: #202225;
+  border-radius: 4px !important;
 
-    input {
-        font-size: 16px;
-    }
+  input {
+    font-size: 16px;
+  }
 }
 
 .accept-notify-email {
-    margin-top: 8px !important;
+  margin-top: 8px !important;
 }
 
 .notify_check {
-    span:first-child {
-        width: 55px;
-    }
+  span:first-child {
+    width: 55px;
+  }
 
-    span {
-        line-height: 12px !important;
-    }
+  span {
+    line-height: 12px !important;
+  }
 }
 
 .button-primary {
-    background-color: #5865f2 !important;
-    color: #eee !important;
-    font-weight: 500 !important;
-    letter-spacing: 2px !important;
+  background-color: #5865f2 !important;
+  color: #eee !important;
+  font-weight: 500 !important;
+  letter-spacing: 2px !important;
 }
 
 .privacy {
-    font-size: 11px;
+  font-size: 11px;
 
-    a {
-        color: #5865f2;
-    }
+  a {
+    color: #5865f2;
+  }
 }
