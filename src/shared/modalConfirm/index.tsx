@@ -1,5 +1,5 @@
 import { Button } from '@mui/material';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { closeModal } from '../../redux/modalSlice';
 import { AuthBox } from '../authBox/authBox';
@@ -26,6 +26,11 @@ export const ModalConfirm: FC<IProps> = ({
   description = '',
 }) => {
   const dispatch = useDispatch();
+  useEffect(() => {
+    return () => {
+      dispatch(closeModal());
+    };
+  }, []);
   return (
     <>
       {visible && (

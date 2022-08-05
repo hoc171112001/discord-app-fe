@@ -10,7 +10,7 @@ import {
   setTokenToCookie,
 } from './Cookie';
 
-const baseURL = process.env.REACT_APP_BASE_URL_LOCAL;
+const baseURL = process.env.REACT_APP_BASE_URL;
 
 const axiosClient = axios.create({
   baseURL,

@@ -17,6 +17,9 @@ import classnames from 'classnames';
 import { mainApi } from '../../../axios/mainApi';
 import { REGISTER_URL } from '../../../constants';
 import { convertDate } from '../../../utils';
+import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/Cookie';
+import { useDispatch } from 'react-redux';
+import { changeAuthState } from '../../../redux/authSlice';
 interface IProps {}
 
 /**
@@ -35,6 +38,7 @@ export const RegisterPage: FC<IProps> = (props) => {
   const [password, setPassword] = useState('');
   const [hasError, setHasError] = useState<boolean>(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const fromToNumber = (from: number, to: number) => {
     const arr = [];
     for (let i = from; i <= to; i++) {
@@ -77,13 +81,15 @@ export const RegisterPage: FC<IProps> = (props) => {
           email: email,
         });
         if (res.data.status == 'success') {
-          navigate('/auth/login');
+          setTokenToCookie(res.data.accessToken);
+          setCookieRefreshToken(res.data.refToken);
+          dispatch(changeAuthState(true));
+          navigate('/app');
         }
       } catch (err: any) {
         if (err.data?.keyValue?.email) {
           setHasErrEmail('Duplicated Email');
           setHasErrUser('');
-
           return;
         }
         if (err.data?.keyValue?.username) {

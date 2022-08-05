@@ -88,10 +88,6 @@ function LoginForm() {
     }
   }, [control._formValues]);
 
-  // useEffect(() => {
-  //   dispatch(openModal({ description: 'asdkjagdja', title: 'kljhfjshdk' }));
-  // }, []);
-
   return (
     <Grid container zIndex={100} className="loginForm">
       <Grid item xs={7}>
