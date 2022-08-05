@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { mainApi } from '../../axios/mainApi';
 import LoadingFullScreen from '../../components/LoadingFullScreen';
@@ -16,7 +17,7 @@ function AppContainer() {
         setFadeout(true);
         timeout = setTimeout(() => {
           setLoading(false);
-        }, 2000);
+        }, 300);
       })
       .catch((err) => {
         console.log(err);
@@ -25,8 +26,24 @@ function AppContainer() {
       clearTimeout(timeout);
     };
   }, []);
-
-  const listServer = ['PM', 'HM', 'HH', 'VL', 'XX', '.C', 'OM'];
+  const nav = useNavigate();
+  const onSelectServer = (data: any, idx: any) => {
+    nav(`/channels/${data.id}`);
+  };
+  const listServer = [
+    {
+      id: '213418741dfsafcxvjh-sdfafgh',
+      name: 'HH',
+    },
+    {
+      id: '213418741dfsafcxvjh-ada',
+      name: 'HB',
+    },
+    {
+      id: '213418741dfsafcxvjh-sdfafasd',
+      name: 'HC',
+    },
+  ];
 
   return (
     <div className="homepage">
@@ -39,7 +56,9 @@ function AppContainer() {
                 className={`server_items server_items--nobg personal-server ${
                   focusing == 'home' && 'focused'
                 }`}
-                onClick={() => setFocusing('home')}
+                onClick={() => {
+                  setFocusing('home');
+                }}
               >
                 <img src="/assets/images/app/logo.svg" alt="" style={{ marginRight: '1px' }} />
               </li>
@@ -48,9 +67,12 @@ function AppContainer() {
                 <li
                   className={`server_items server_items--nobg ${focusing == idx && 'focused'}`}
                   key={idx}
-                  onClick={() => setFocusing(idx)}
+                  onClick={() => {
+                    setFocusing(idx);
+                    onSelectServer(e, idx);
+                  }}
                 >
-                  {e}
+                  {e.name}
                 </li>
               ))}
               <li className="separator"></li>
