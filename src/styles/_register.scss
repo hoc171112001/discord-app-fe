@@ -1,128 +1,113 @@
 .register_wrapper {
-    width: 100%;
-    height: 100vh;
-    background: url("../../public/assets/images/login/login_background.svg") no-repeat;
-    background-position: center;
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: url('../../public/assets/images/login/login_background.svg') no-repeat;
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-    .form_body {
-        margin-top: 16px;
-    }
+  .form_body {
+    margin-top: 16px;
+  }
 }
 
 .back__button {
-    display: inline-flex;
-    align-items: center;
+  display: inline-flex;
+  align-items: center;
 
-    &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-    }
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
 }
 
-
 .form_register {
-    .heading {
-        font-size: 25px;
-        line-height: 30px;
-        font-weight: 700;
-        text-align: center;
-        margin-top: 16px;
-    }
+  .heading {
+    font-size: 25px;
+    line-height: 30px;
+    font-weight: 700;
+    text-align: center;
+    margin-top: 16px;
+  }
 
-    .form_body {
-        margin-top: 20px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-
-
-    }
+  .form_body {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
 
 .form_control {
-    width: 100%;
+  width: 100%;
 
-    .label_textfield {
-        font-weight: 700;
+  .label_textfield {
+    font-weight: 700;
 
-        font-size: 11px;
-        color: rgb(201, 201, 201);
-        text-transform: uppercase;
-        line-height: 20px;
-    }
+    font-size: 11px;
+    color: rgb(201, 201, 201);
+    text-transform: uppercase;
+    line-height: 20px;
+  }
 
-    .date_birth {
-        margin-top: 2px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+  label {
+    color: #bbb !important;
+  }
 
-        .date_birth--item {
-            flex: 32%;
-            max-width: 32%;
-        }
+  ul {
+    background: #000 !important;
+  }
 
-        label {
-            color: #bbb !important;
-        }
-
-        ul {
-            background: #000 !important;
-        }
-
-        li {
-            color: #fff !important;
-        }
-    }
+  li {
+    color: #fff !important;
+  }
 }
 
-.form_control+.form_control {
-    margin-top: 14px;
+.form_control + .form_control {
+  margin-top: 14px;
 }
 
 .text_full {
-    width: 100% !important;
-    background-color: #202225;
-    border-radius: 4px !important;
+  width: 100% !important;
+  background-color: #202225;
+  border-radius: 4px !important;
 
-    input {
-        font-size: 16px;
-    }
+  input {
+    font-size: 16px;
+  }
 
-    fieldset {
-        border: none !important;
-    }
+  fieldset {
+    border: none !important;
+  }
 }
 
 .accept-notify-email {
-    margin-top: 8px !important;
+  margin-top: 8px !important;
 }
 
 .notify_check {
-    span:first-child {
-        width: 55px;
-    }
+  span:first-child {
+    width: 55px;
+  }
 
-    span {
-        line-height: 12px !important;
-    }
+  span {
+    line-height: 12px !important;
+  }
 }
 
 .button-primary {
-    background-color: #5865f2 !important;
-    color: #eee !important;
-    font-weight: 500 !important;
-    letter-spacing: 2px !important;
+  background-color: #5865f2 !important;
+  color: #eee !important;
+  font-weight: 500 !important;
+  letter-spacing: 2px !important;
 }
 
 .privacy {
-    font-size: 11px;
+  font-size: 11px;
 
-    a {
-        color: #5865f2;
-    }
+  a {
+    color: #5865f2;
+  }
 }

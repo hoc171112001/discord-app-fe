@@ -1,25 +1,24 @@
 .authbox {
-    padding: 32px;
-    border-radius: 5px;
-    background-color: #36393f;
-    box-shadow: 5px 5px 10px -4px #333;
-    animation: slideTopIn .3s ease-out;
-
+  padding: 32px;
+  border-radius: 5px;
+  background-color: #36393f;
+  box-shadow: 5px 5px 10px -4px #333;
+  animation: slideTopIn 0.3s ease-out;
 }
 
 @keyframes slideTopIn {
-    0% {
-        opacity: 0;
-        transform: scale(100%) translateY(-50%);
-    }
+  0% {
+    opacity: 0;
+    transform: scale(100%) translateY(-50%);
+  }
 
-    80% {
-        opacity: 1;
-        transform: scale(100%) translateY(2%);
-    }
+  80% {
+    opacity: 1;
+    transform: scale(100%) translateY(2%);
+  }
 
-    100% {
-        opacity: 1;
-        transform: scale(100%) translateY(0%);
-    }
+  100% {
+    opacity: 1;
+    transform: scale(100%) translateY(0%);
+  }
 }

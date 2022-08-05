@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { getTokenFromCookie } from './axios/Cookie';
+import { getRefreshToken, getTokenFromCookie } from './axios/Cookie';
 import ProtectedComponent from './components/layouts/ProtectedComponent';
 import AuthPrivate from './pages/auth';
 import LoginPage from './pages/auth/login';
@@ -29,8 +29,9 @@ function App() {
   const { visible, description, title, acceptButton, acceptButtonLabel } = useSelector(
     (state: RootState) => state.modal,
   );
+
   // check authenticate
-  dispatch(changeAuthState(isValidToken(getTokenFromCookie())));
+  dispatch(changeAuthState(isValidToken(getTokenFromCookie()) || isValidToken(getRefreshToken())));
 
   return (
     <ThemeProvider theme={darkTheme}>
