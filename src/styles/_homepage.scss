@@ -4,3 +4,73 @@
   color: $primary_color;
   background-color: $background_color;
 }
+
+
+.loading__wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #25262c;
+  z-index: 999999;
+  color: #ccc !important;
+
+  .loading_video {
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    video {
+      display: block;
+      margin: 0 auto;
+    }
+
+    .tip {
+      position: absolute;
+      bottom: -10px;
+
+      h4,
+      p {
+        color: #ccc;
+        text-align: center;
+        font-size: 15px;
+      }
+
+      p {
+        font-size: 13px;
+      }
+    }
+
+  }
+
+
+  .loading_footer {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    .connection_error_tip {
+      font-size: 14px;
+      color: #ccc;
+    }
+  }
+}
+
+.fadeOut {
+  animation: fadeOut .3s;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
