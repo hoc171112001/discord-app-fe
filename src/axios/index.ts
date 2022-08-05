@@ -23,12 +23,20 @@ const axiosClient = axios.create({
 
 // Interceptors
 axiosClient.interceptors.request.use(async (req: any) => {
-  let authTokens = getTokenFromCookie() || '';
+  if (req.url.includes('/auth/login')) {
+    return req;
+  }
 
-  if (!authTokens) {
+  let authTokens = getTokenFromCookie() || '';
+  const validToken = isValidToken(authTokens);
+  console.log('validToken :', validToken);
+
+  if (!authTokens || !validToken) {
     // check if refresh token is expired
     const refreshToken: any = getRefreshToken();
     const isExpired = isValidToken(refreshToken);
+    console.log('isExpired :', isExpired);
+
     if (!refreshToken || !isExpired) {
       store.dispatch(changeAuthState(false));
       return req;
@@ -36,8 +44,9 @@ axiosClient.interceptors.request.use(async (req: any) => {
 
     try {
       // get refresh token
+      console.log('<===== running here =====>');
       const response = await axios.post(`${baseURL}/auth/refreshToken`, {
-        refresh: refreshToken,
+        refreshToken,
       });
 
       setCookieRefreshToken(response.data.refToken);
@@ -65,7 +74,7 @@ axiosClient.interceptors.response.use(
     return Promise.reject(response);
   },
   function (error) {
-    if (error.response.status === 401) {
+    if (error) {
       store.dispatch(changeAuthState(false));
     }
     return Promise.reject(error);

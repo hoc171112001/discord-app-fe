@@ -15,7 +15,7 @@ function AppContainer() {
         setFadeout(true);
         timeout = setTimeout(() => {
           setLoading(false);
-        }, 300);
+        }, 2000);
       })
       .catch((err) => {
         console.log(err);
