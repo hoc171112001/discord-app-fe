@@ -42,7 +42,9 @@ function App() {
           <Route path="reset" element={<ResetPassword />} />
         </Route>
         <Route element={<ProtectedComponent />}>
-          <Route path="/app" element={<AppOverview />} />
+          <Route path="/app" element={<AppOverview />}>
+            <Route path="/app/channels/:id" element={<div>23143141df</div>} />
+          </Route>
         </Route>
       </Routes>
       <ModalConfirm

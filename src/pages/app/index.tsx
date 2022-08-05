@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import { mainApi } from '../../axios/mainApi';
 import LoadingFullScreen from '../../components/LoadingFullScreen';
@@ -28,7 +28,7 @@ function AppContainer() {
   }, []);
   const nav = useNavigate();
   const onSelectServer = (data: any, idx: any) => {
-    nav(`/channels/${data.id}`);
+    nav(`/app/channels/${data.id}`);
   };
   const listServer = [
     {
@@ -58,6 +58,7 @@ function AppContainer() {
                 }`}
                 onClick={() => {
                   setFocusing('home');
+                  nav('/app/channels/@me');
                 }}
               >
                 <img src="/assets/images/app/logo.svg" alt="" style={{ marginRight: '1px' }} />
@@ -85,7 +86,9 @@ function AppContainer() {
             </ul>
           </div>
         </div>
-        <div className="layout_main"></div>
+        <div className="layout_main">
+          <Outlet />
+        </div>
       </div>
     </div>
   );
