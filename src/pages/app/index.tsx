@@ -28,7 +28,7 @@ function AppContainer() {
   }, []);
   const nav = useNavigate();
   const onSelectServer = (data: any, idx: any) => {
-    nav(`/app/channels/${data.id}`);
+    nav(`/channels/${data.id}`);
   };
   const listServer = [
     {
@@ -58,7 +58,7 @@ function AppContainer() {
                 }`}
                 onClick={() => {
                   setFocusing('home');
-                  nav('/app/channels/@me');
+                  nav('/channels/@me');
                 }}
               >
                 <img src="/assets/images/app/logo.svg" alt="" style={{ marginRight: '1px' }} />

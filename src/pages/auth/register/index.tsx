@@ -84,7 +84,7 @@ export const RegisterPage: FC<IProps> = (props) => {
           setTokenToCookie(res.data.accessToken);
           setCookieRefreshToken(res.data.refToken);
           dispatch(changeAuthState(true));
-          navigate('/app');
+          navigate('/channels/@me');
         }
       } catch (err: any) {
         if (err.data?.keyValue?.email) {

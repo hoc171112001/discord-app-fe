@@ -53,7 +53,7 @@ function LoginForm() {
       // change auth state
       dispatch(changeAuthState(true));
       setIsLoading(false);
-      navigate('/app');
+      navigate('/channels/@me');
     } catch (error) {
       setIsLoading(false);
       setHasErrorLogin(true);
