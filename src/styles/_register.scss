@@ -111,3 +111,13 @@
     color: #5865f2;
   }
 }
+
+.date_birth {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+
+  &--item {
+    width: 30%;
+  }
+}
