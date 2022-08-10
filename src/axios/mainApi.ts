@@ -5,6 +5,7 @@ export const mainApi = {
     return axiosClient.post(url, data);
   },
   getAll(url: string, params: any) {
+    console.log(params);
     return axiosClient.get(url, { params });
   },
   getById(url: string, id: string) {

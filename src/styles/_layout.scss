@@ -36,7 +36,7 @@
       transition: 0.2s;
       border-radius: 50%;
       position: relative;
-
+      overflow: hidden;
       & + .server_items {
         margin-top: 8px;
       }

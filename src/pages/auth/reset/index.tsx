@@ -1,7 +1,7 @@
 import { Button, TextField } from '@mui/material';
 import classNames from 'classnames';
 import React, { FC, useState } from 'react';
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { mainApi } from '../../../axios/mainApi';
 import { RESET_PASSWORD_URL } from '../../../constants';
 import { AuthBox } from '../../../shared/authBox/authBox';
