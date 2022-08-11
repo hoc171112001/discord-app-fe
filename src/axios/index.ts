@@ -68,6 +68,15 @@ axiosClient.interceptors.request.use(async (req: any) => {
 
 axiosClient.interceptors.response.use(
   function (response) {
+    (async function refreshTokenCall() {
+      try {
+        const res = await axios.post(`${baseURL}/auth/refreshToken`, {
+          refreshToken: getRefreshToken(),
+        });
+        setTokenToCookie(res.data?.accessToken);
+        setCookieRefreshToken(res.data?.refToken);
+      } catch (err) {}
+    })();
     if (response.status === 200) {
       return response;
     }
