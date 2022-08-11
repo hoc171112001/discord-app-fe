@@ -12,6 +12,7 @@ import { changeAuthState } from './redux/authSlice';
 import { RootState } from './redux/store';
 import { ModalConfirm } from './shared/modalConfirm';
 import { isValidToken } from './utils';
+import { ChannelComponent } from './pages/app/channel';
 
 const darkTheme = createTheme({
   palette: {
@@ -43,7 +44,7 @@ function App() {
         </Route>
         <Route element={<ProtectedComponent />}>
           <Route path="/" element={<AppOverview />}>
-            <Route path="/channels/:id" element={<div>23143141df</div>} />
+            <Route path="/channels/:id" element={<ChannelComponent />} />
           </Route>
         </Route>
       </Routes>

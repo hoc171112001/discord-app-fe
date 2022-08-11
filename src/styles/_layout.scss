@@ -36,7 +36,28 @@
       transition: 0.2s;
       border-radius: 50%;
       position: relative;
-      overflow: hidden;
+
+      // overflow: hidden;
+      .box-avt {
+        width: 48px;
+        height: 48px;
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+        font-weight: 600;
+        line-height: 48px;
+        background-color: $background_color;
+        transition: 0.2s;
+        border-radius: 50%;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+          cursor: pointer;
+          border-radius: 32%;
+        }
+      }
+
       & + .server_items {
         margin-top: 8px;
       }
@@ -67,12 +88,16 @@
       }
 
       &.focused::before {
-        height: calc(100% - 16px);
+        height: calc(100% - 18px);
       }
 
       &.focused {
         border-radius: 32%;
         background-color: #5865f2;
+
+        .box-avt {
+          border-radius: 32%;
+        }
       }
 
       &:hover {

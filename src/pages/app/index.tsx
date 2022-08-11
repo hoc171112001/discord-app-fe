@@ -30,6 +30,10 @@ function AppContainer() {
       })
       .catch((err) => {
         console.log(err);
+        setFadeout(true);
+        timeout = setTimeout(() => {
+          setLoading(false);
+        }, 200);
       });
     return () => {
       clearTimeout(timeout);
@@ -37,7 +41,7 @@ function AppContainer() {
   }, []);
   const nav = useNavigate();
   const onSelectServer = (data: any, idx: any) => {
-    nav(`/channels/${data.id}`);
+    nav(`/channels/${data._id}`);
   };
 
   const renderNameAvatar = (name: string) => {
@@ -81,11 +85,13 @@ function AppContainer() {
                     }}
                   >
                     {e.icon ? (
-                      <img
-                        src={e.icon}
-                        alt=""
-                        style={{ width: '48px', height: '48px', objectFit: 'cover' }}
-                      />
+                      <div className="box-avt">
+                        <img
+                          src={e.icon}
+                          alt=""
+                          style={{ width: '48px', height: '48px', objectFit: 'cover' }}
+                        />
+                      </div>
                     ) : (
                       <span>{renderNameAvatar(e.name)}</span>
                     )}
