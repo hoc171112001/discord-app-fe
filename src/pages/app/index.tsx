@@ -15,7 +15,6 @@ function AppContainer() {
   const cookieToken: any = getTokenFromCookie();
   const userInfo: any = jwt_decode(cookieToken);
   const userId: string = userInfo?.id;
-  console.log('userId :', userId);
   const serverList: any = _.get(personalInfo, 'personal.servers', []);
 
   useEffect(() => {

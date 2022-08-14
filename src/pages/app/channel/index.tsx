@@ -1,4 +1,7 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
+import { useLocation } from 'react-router-dom';
+import { MeChannel } from './@me';
+import { ServersChannel } from './servers';
 
 interface IProps {}
 
@@ -8,8 +11,6 @@ interface IProps {}
  **/
 
 export const ChannelComponent: FC<IProps> = (props) => {
-  useEffect(() => {
-    console.log('object');
-  }, []);
-  return <div>ChannelComponent</div>;
+  const location = useLocation();
+  return location.pathname === '/channels/@me' ? <MeChannel /> : <ServersChannel />;
 };
