@@ -7,8 +7,12 @@
 @import 'homepage';
 @import 'layout';
 
+@font-face {
+  font-family: 'WhiteneyMedium';
+  src: url('./fonts/whitneymedium.otf') format('opentype');
+}
 * {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'WhiteneyMedium';
   color: $primary_color;
   box-sizing: border-box;
 }
