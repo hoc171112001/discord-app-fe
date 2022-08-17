@@ -17,6 +17,15 @@
       padding: 10px;
       position: relative;
       box-shadow: -5px -2px 3px 2px #000;
+      .search_btn {
+        background-color: #25262c;
+        font-size: 13px;
+        width: 100%;
+        border-radius: 5px;
+        text-align: center;
+        line-height: 27px;
+        cursor: pointer;
+      }
     }
     .list__interactive {
     }
