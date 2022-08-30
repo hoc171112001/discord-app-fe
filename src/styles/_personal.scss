@@ -6,10 +6,12 @@
 
 .main_func_wrapper {
   display: flex;
+
   .main_func_wrapper__sidebar {
     width: 240px;
     background-color: #2f3136;
     height: 100vh;
+
     .searchbar {
       width: 100%;
       height: 48px;
@@ -17,15 +19,30 @@
       padding: 10px;
       position: relative;
       box-shadow: -5px -2px 3px 2px #000;
+
+      .searbar__btn {
+        background-color: #202225;
+        width: 100%;
+        border-radius: 4px;
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
     }
+
     .list__interactive {
     }
+
     .personal_controller {
     }
   }
+
   .main_func_wrapper__content {
     flex: 1;
     height: 100vh;
+
     .topbar {
       width: 100%;
       height: 48px;

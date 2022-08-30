@@ -11,11 +11,18 @@ export const MeChannel: FC<IProps> = (props) => {
   useEffect(() => {
     console.log('@me');
   }, []);
+  const onOpenSearchConversation = () => {
+    console.log('ok');
+  };
   return (
     <div className="personal_wrapper">
       <div className="main_func_wrapper">
         <div className="main_func_wrapper__sidebar">
-          <div className="searchbar">searchbar</div>
+          <div className="searchbar">
+            <div className="searbar__btn" onClick={onOpenSearchConversation}>
+              Search or start converations
+            </div>
+          </div>
           <div className="list__interactive">List Interactive</div>
           <div className="personal_controller">controller</div>
         </div>
