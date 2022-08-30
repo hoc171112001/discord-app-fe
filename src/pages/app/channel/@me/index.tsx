@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { useModal } from '../../../../shared/Hooks/modal';
 
 interface IProps {}
 
@@ -8,19 +9,20 @@ interface IProps {}
  **/
 
 export const MeChannel: FC<IProps> = (props) => {
+  const modal = useModal();
   useEffect(() => {
     console.log('@me');
   }, []);
-  const onOpenSearchConversation = () => {
-    console.log('ok');
+  const onOpenSearchModal = () => {
+    modal.openModalConfirm('search', 'deo biet noi j', true);
   };
   return (
     <div className="personal_wrapper">
       <div className="main_func_wrapper">
         <div className="main_func_wrapper__sidebar">
           <div className="searchbar">
-            <div className="searbar__btn" onClick={onOpenSearchConversation}>
-              Search or start converations
+            <div className="search_btn" onClick={onOpenSearchModal}>
+              Search or start the conversation
             </div>
           </div>
           <div className="list__interactive">List Interactive</div>
