@@ -25,7 +25,9 @@ export const MeChannel: FC<IProps> = (props) => {
               Search or start the conversation
             </div>
           </div>
-          <div className="list__interactive">List Interactive</div>
+          <div className="list__interactive">
+            <div className="list__dm">list dm</div>
+          </div>
           <div className="personal_controller">controller</div>
         </div>
         <div className="main_func_wrapper__content">

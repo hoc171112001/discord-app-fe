@@ -24,7 +24,7 @@
         background-color: #202225;
         width: 100%;
         border-radius: 4px;
-        font-size: 15px;
+        font-size: 14px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -33,9 +33,30 @@
     }
 
     .list__interactive {
+      padding: 10px;
+      height: calc(100% - 100px);
+      overflow-y: auto;
+      overflow-x: hidden;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+      &:hover::-webkit-scrollbar {
+        width: 5px;
+        display: block;
+      }
+      &::-webkit-scrollbar-thumb {
+        border-radius: 8px;
+        background: rgb(0, 0, 0);
+      }
+      .list__dm {
+        height: 100vh;
+      }
     }
 
     .personal_controller {
+      padding: 10px;
+      height: 52px;
+      background-color: #292b2f;
     }
   }
 
