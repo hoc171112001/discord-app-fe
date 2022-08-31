@@ -1,0 +1,28 @@
+$btn-default: 42px;
+$btn-small: 38px;
+
+.btn__discord {
+  border-radius: 3px;
+  height: $btn-default;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  &:hover {
+    background: #40444b;
+    color: #ddd;
+    cursor: pointer;
+  }
+  &--focused {
+    background: #42464d;
+    color: #ddd;
+  }
+  &--small {
+    height: $btn-small;
+  }
+  .icon {
+    margin-right: 16px;
+    &:hover {
+      color: #ddd;
+    }
+  }
+}

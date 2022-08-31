@@ -33,23 +33,46 @@
     }
 
     .list__interactive {
+      position: relative;
       padding: 10px;
       height: calc(100% - 100px);
       overflow-y: auto;
       overflow-x: hidden;
       &::-webkit-scrollbar {
-        display: none;
+        width: 4px;
       }
       &:hover::-webkit-scrollbar {
-        width: 5px;
+        width: 4px;
         display: block;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        background: rgb(0, 0, 0);
       }
       &::-webkit-scrollbar-thumb {
         border-radius: 8px;
-        background: rgb(0, 0, 0);
+        background: transparent;
       }
       .list__dm {
         height: 100vh;
+        .message_label {
+          display: flex;
+          justify-content: space-between;
+          margin-top: 16px;
+          margin-bottom: 4px;
+          padding: 0 10px;
+          align-items: center;
+          span {
+            text-transform: uppercase;
+            font-size: 13px;
+            &:hover {
+              color: #ddd;
+            }
+          }
+          img {
+            cursor: pointer;
+            padding: 10px 0;
+          }
+        }
       }
     }
 
@@ -72,4 +95,7 @@
       box-shadow: 5px -2px 3px 2px #000;
     }
   }
+}
+.icon {
+  margin-right: 16px;
 }

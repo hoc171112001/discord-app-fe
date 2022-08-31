@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { BtnDiscord } from '../../../../components/button';
 import { useModal } from '../../../../shared/Hooks/modal';
 
 interface IProps {}
@@ -26,7 +27,42 @@ export const MeChannel: FC<IProps> = (props) => {
             </div>
           </div>
           <div className="list__interactive">
-            <div className="list__dm">list dm</div>
+            <div className="list__dm">
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/nitro.svg" className="icon" /> Nitro
+              </BtnDiscord>
+              <div className="message_label">
+                <span>Direct message</span>
+                <img src="/assets/icons/plus.svg" alt="" title="Create DM" />
+              </div>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+              <BtnDiscord>
+                <img alt="" src="/assets/icons/fr.svg" className="icon" /> Friends
+              </BtnDiscord>
+            </div>
           </div>
           <div className="personal_controller">controller</div>
         </div>
