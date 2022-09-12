@@ -12,5 +12,5 @@ interface IProps {}
 
 export const ChannelComponent: FC<IProps> = (props) => {
   const location = useLocation();
-  return location.pathname === '/channels/@me' ? <MeChannel /> : <ServersChannel />;
+  return location.pathname.includes('/channels/@me') ? <MeChannel /> : <ServersChannel />;
 };
