@@ -4,7 +4,8 @@ import jwt_decode from 'jwt-decode';
 import { mainApi } from '../../axios/mainApi';
 import LoadingFullScreen from '../../components/LoadingFullScreen';
 import { getTokenFromCookie } from '../../axios/Cookie';
-import { render } from '@testing-library/react';
+// import { render } from '@testing-library/react';
+// import { async } from 'rxjs';
 const _ = require('lodash');
 
 function AppContainer() {
@@ -12,29 +13,54 @@ function AppContainer() {
   const [fadeout, setFadeout] = useState<boolean>(false);
   const [focusing, setFocusing] = useState<any>('home');
   const [personalInfo, setPersonalInfo] = useState<any>(null);
+  const [friendsData, setFriendsData] = useState<any>([]);
   const cookieToken: any = getTokenFromCookie();
   const userInfo: any = jwt_decode(cookieToken);
   const userId: string = userInfo?.id;
   const serverList: any = _.get(personalInfo, 'personal.servers', []);
 
+  const getDataUsers = async (timeout: any) => {
+    try {
+      const [personal, friends] = await Promise.all([
+        mainApi.getAll('/personal', { id: userId }),
+        mainApi.getAll('/personal/friends', { id: userId }),
+      ]);
+      setPersonalInfo(personal.data);
+      setFriendsData(friends.data);
+      console.log('friends', friends.data);
+      setFadeout(true);
+      timeout = setTimeout(() => {
+        setLoading(false);
+      }, 200);
+    } catch (err) {
+      console.log(err);
+      setFadeout(true);
+      timeout = setTimeout(() => {
+        setLoading(false);
+      }, 200);
+    }
+  };
+
   useEffect(() => {
     let timeout: any;
-    mainApi
-      .getAll('/personal', { id: userId })
-      .then((res) => {
-        setPersonalInfo(res.data);
-        setFadeout(true);
-        timeout = setTimeout(() => {
-          setLoading(false);
-        }, 200);
-      })
-      .catch((err) => {
-        console.log(err);
-        setFadeout(true);
-        timeout = setTimeout(() => {
-          setLoading(false);
-        }, 200);
-      });
+    getDataUsers(timeout);
+    // mainApi
+    //   .getAll('/personal', { id: userId })
+    //   .then((res) => {
+    //     setPersonalInfo(res.data);
+    //     setFadeout(true);
+    //     timeout = setTimeout(() => {
+    //       setLoading(false);
+    //     }, 200);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setFadeout(true);
+    //     timeout = setTimeout(() => {
+    //       setLoading(false);
+    //     }, 200);
+    //   });
+
     return () => {
       clearTimeout(timeout);
     };
