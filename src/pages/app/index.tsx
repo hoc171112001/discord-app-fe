@@ -4,8 +4,9 @@ import jwt_decode from 'jwt-decode';
 import { mainApi } from '../../axios/mainApi';
 import LoadingFullScreen from '../../components/LoadingFullScreen';
 import { getTokenFromCookie } from '../../axios/Cookie';
-// import { render } from '@testing-library/react';
-// import { async } from 'rxjs';
+import { render } from '@testing-library/react';
+import { useDispatch } from 'react-redux';
+import { setPersonal } from '../../redux/channelSlice';
 const _ = require('lodash');
 
 function AppContainer() {
@@ -18,49 +19,26 @@ function AppContainer() {
   const userInfo: any = jwt_decode(cookieToken);
   const userId: string = userInfo?.id;
   const serverList: any = _.get(personalInfo, 'personal.servers', []);
-
-  const getDataUsers = async (timeout: any) => {
-    try {
-      const [personal, friends] = await Promise.all([
-        mainApi.getAll('/personal', { id: userId }),
-        mainApi.getAll('/personal/friends', { id: userId }),
-      ]);
-      setPersonalInfo(personal.data);
-      setFriendsData(friends.data);
-      console.log('friends', friends.data);
-      setFadeout(true);
-      timeout = setTimeout(() => {
-        setLoading(false);
-      }, 200);
-    } catch (err) {
-      console.log(err);
-      setFadeout(true);
-      timeout = setTimeout(() => {
-        setLoading(false);
-      }, 200);
-    }
-  };
-
+  const dispatch = useDispatch();
   useEffect(() => {
     let timeout: any;
-    getDataUsers(timeout);
-    // mainApi
-    //   .getAll('/personal', { id: userId })
-    //   .then((res) => {
-    //     setPersonalInfo(res.data);
-    //     setFadeout(true);
-    //     timeout = setTimeout(() => {
-    //       setLoading(false);
-    //     }, 200);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     setFadeout(true);
-    //     timeout = setTimeout(() => {
-    //       setLoading(false);
-    //     }, 200);
-    //   });
-
+    mainApi
+      .getAll('/personal', { id: userId })
+      .then((res) => {
+        setPersonalInfo(res.data);
+        dispatch(setPersonal(res.data?.personal));
+        setFadeout(true);
+        timeout = setTimeout(() => {
+          setLoading(false);
+        }, 200);
+      })
+      .catch((err) => {
+        console.log(err);
+        setFadeout(true);
+        timeout = setTimeout(() => {
+          setLoading(false);
+        }, 200);
+      });
     return () => {
       clearTimeout(timeout);
     };

@@ -12,7 +12,10 @@ import { changeAuthState } from './redux/authSlice';
 import { RootState } from './redux/store';
 import { ModalConfirm } from './shared/modalConfirm';
 import { isValidToken } from './utils';
-import { ChannelComponent } from './pages/app/channel';
+import { MeChannel } from './pages/app/channel/@me';
+import { ServersChannel } from './pages/app/channel/servers';
+import { MeChannelMessage } from './pages/app/channel/@me/MeChannelMessage';
+import { MeChannelMain } from './pages/app/channel/@me/MeChannelMain';
 
 const darkTheme = createTheme({
   palette: {
@@ -44,7 +47,11 @@ function App() {
         </Route>
         <Route element={<ProtectedComponent />}>
           <Route path="/" element={<AppOverview />}>
-            <Route path="/channels/:id" element={<ChannelComponent />} />
+            <Route path="/channels/@me" element={<MeChannel />}>
+              <Route path="/channels/@me" element={<MeChannelMain />} />
+              <Route path="/channels/@me/:id" element={<MeChannelMessage />} />
+            </Route>
+            <Route path="/channels/:id" element={<ServersChannel />} />
           </Route>
         </Route>
       </Routes>

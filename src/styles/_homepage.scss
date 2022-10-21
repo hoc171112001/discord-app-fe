@@ -11,7 +11,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #25262c;
+  background-color: #000;
   z-index: 999999;
   color: #ccc !important;
 
@@ -26,6 +26,7 @@
     video {
       display: block;
       margin: 0 auto;
+      filter: contrast(1.5);
     }
 
     .tip {

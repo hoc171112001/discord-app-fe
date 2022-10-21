@@ -2,30 +2,25 @@ import { createSlice } from '@reduxjs/toolkit';
 
 // Define a type for the slice state
 interface ChannelSlice {
-  me: any;
-  servers: any;
+  personalData: any;
 }
 
 // Define the initial state using that type
 const initialState: ChannelSlice = {
-  me: {},
-  servers: {},
+  personalData: null,
 };
 
 export const channelSlice = createSlice({
   name: 'channel',
   initialState,
   reducers: {
-    setMeChannel: (state, action) => {
-      state.me = action.payload;
-    },
-    setServersChannel: (state, action) => {
-      state.servers = action.payload;
+    setPersonal(state, action) {
+      state.personalData = action.payload;
     },
   },
 });
 
-export const { setMeChannel, setServersChannel } = channelSlice.actions;
+export const { setPersonal } = channelSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 
