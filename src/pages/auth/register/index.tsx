@@ -17,7 +17,7 @@ import classnames from 'classnames';
 import { mainApi } from '../../../axios/mainApi';
 import { REGISTER_URL } from '../../../constants';
 import { convertDate } from '../../../utils';
-import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/Cookie';
+import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/cookie';
 import { useDispatch } from 'react-redux';
 import { changeAuthState } from '../../../redux/authSlice';
 interface IProps {}

@@ -8,7 +8,7 @@ import {
   getTokenFromCookie,
   setCookieRefreshToken,
   setTokenToCookie,
-} from './Cookie';
+} from './cookie';
 
 const baseURL = process.env.REACT_APP_BASE_URL;
 
@@ -44,8 +44,7 @@ axiosClient.interceptors.request.use(async (req: any) => {
 
     try {
       // get refresh token
-      console.log('<===== running here =====>');
-      const response = await axios.post(`${baseURL}/auth/refreshToken`, {
+      const response = await axios.post(`${baseURL}/auth/refresh-token`, {
         refreshToken,
       });
 
@@ -70,7 +69,7 @@ axiosClient.interceptors.response.use(
   function (response) {
     (async function refreshTokenCall() {
       try {
-        const res = await axios.post(`${baseURL}/auth/refreshToken`, {
+        const res = await axios.post(`${baseURL}/auth/refresh-token`, {
           refreshToken: getRefreshToken(),
         });
         setTokenToCookie(res.data?.accessToken);

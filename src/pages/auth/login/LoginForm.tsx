@@ -9,7 +9,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/Cookie';
+import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/cookie';
 import authApi from '../../../axios/login';
 import { mainApi } from '../../../axios/mainApi';
 import { FORGOT_PASSWORD_URL } from '../../../constants';

@@ -1,7 +1,7 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { getRefreshToken, getTokenFromCookie } from './axios/Cookie';
+import { getRefreshToken, getTokenFromCookie } from './axios/cookie';
 import ProtectedComponent from './components/layouts/ProtectedComponent';
 import AuthPrivate from './pages/auth';
 import LoginPage from './pages/auth/login';

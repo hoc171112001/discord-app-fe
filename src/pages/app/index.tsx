@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import { mainApi } from '../../axios/mainApi';
 import LoadingFullScreen from '../../components/LoadingFullScreen';
-import { getTokenFromCookie } from '../../axios/Cookie';
+import { getTokenFromCookie } from '../../axios/cookie';
 import { render } from '@testing-library/react';
 import { useDispatch } from 'react-redux';
 import { setPersonal } from '../../redux/channelSlice';
