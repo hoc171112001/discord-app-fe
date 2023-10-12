@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import queryString from 'query-string';
 import { changeAuthState } from '../redux/authSlice';
 import { store } from '../redux/store';
@@ -22,69 +22,56 @@ const axiosClient = axios.create({
 });
 
 // Interceptors
-axiosClient.interceptors.request.use(async (req: any) => {
-  if (req.url.includes('/auth/login')) {
+axiosClient.interceptors.request.use(async (req: AxiosRequestConfig) => {
+  if (!req?.headers) return req;
+
+  const refreshToken: string = getRefreshToken() || '';
+  const authTokens: string = getTokenFromCookie() || '';
+
+  // if token is still valid
+  if (isValidToken(authTokens)) {
+    req.headers.Authorization = `Bearer ${authTokens}`;
+    store.dispatch(changeAuthState(true));
     return req;
   }
 
-  let authTokens = getTokenFromCookie() || '';
-  const validToken = isValidToken(authTokens);
-  console.log('validToken :', validToken);
-
-  if (!authTokens || !validToken) {
-    // check if refresh token is expired
-    const refreshToken: any = getRefreshToken();
-    const isExpired = isValidToken(refreshToken);
-    console.log('isExpired :', isExpired);
-
-    if (!refreshToken || !isExpired) {
-      store.dispatch(changeAuthState(false));
-      return req;
-    }
-
-    try {
-      // get refresh token
-      const response = await axios.post(`${baseURL}/auth/refresh-token`, {
-        refreshToken,
-      });
-
-      setCookieRefreshToken(response.data.refToken);
-      setTokenToCookie(response.data.accessToken);
-      req.headers.Authorization = `Bearer ${response.data.accessToken}`;
-
-      return req;
-    } catch (error) {
-      store.dispatch(changeAuthState(false));
-    }
-  } else {
-    if (isValidToken(authTokens)) {
-      req.headers.Authorization = `Bearer ${authTokens}`;
-      store.dispatch(changeAuthState(true));
-    }
+  // if refresh token invalid
+  if (!isValidToken(refreshToken)) {
+    store.dispatch(changeAuthState(false));
     return req;
   }
+
+  // send refresh token request
+  if (!req?.url?.includes('/auth/')) {
+    const response = await sendRefreshToken(refreshToken);
+    if (!response) {
+      store.dispatch(changeAuthState(false));
+      return req;
+    }
+    req.headers.Authorization = `Bearer ${response.data.accessToken}`;
+    setCookieRefreshToken(response.data.refToken);
+    setTokenToCookie(response.data.accessToken);
+  }
+
+  return req;
 });
+
+const sendRefreshToken = async (refreshToken: string) => {
+  try {
+    const response = await axios.post(`${baseURL}/auth/refresh-token`, {
+      refreshToken,
+    });
+    return response;
+  } catch {
+    return false;
+  }
+};
 
 axiosClient.interceptors.response.use(
   function (response) {
-    (async function refreshTokenCall() {
-      try {
-        const res = await axios.post(`${baseURL}/auth/refresh-token`, {
-          refreshToken: getRefreshToken(),
-        });
-        setTokenToCookie(res.data?.accessToken);
-        setCookieRefreshToken(res.data?.refToken);
-      } catch (err) {}
-    })();
-    if (response.status === 200) {
-      return response;
-    }
-    return Promise.reject(response);
+    return response;
   },
   function (error) {
-    if (error) {
-      store.dispatch(changeAuthState(false));
-    }
     return Promise.reject(error);
   },
 );
