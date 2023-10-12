@@ -46,7 +46,7 @@ function LoginForm() {
       const { data }: any = await authApi.login(values);
       // save user info to local storage
       setTokenToCookie(data.accessToken);
-      setCookieRefreshToken(data.refToken);
+      setCookieRefreshToken(data.refreshToken);
 
       setHasErrorLogin(false);
       // change auth state

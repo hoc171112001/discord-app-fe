@@ -82,7 +82,7 @@ export const RegisterPage: FC<IProps> = (props) => {
         });
         if (res.data.status == 'success') {
           setTokenToCookie(res.data.accessToken);
-          setCookieRefreshToken(res.data.refToken);
+          setCookieRefreshToken(res.data.refreshToken);
           dispatch(changeAuthState(true));
           navigate('/channels/@me');
         }
@@ -222,7 +222,7 @@ export const RegisterPage: FC<IProps> = (props) => {
                       id="demo-select-small"
                       label="Year"
                       onChange={changeYear}
-                      value={year}
+                      value={year || new Date().getFullYear()}
                       MenuProps={{
                         PaperProps: {
                           style: {
@@ -231,7 +231,7 @@ export const RegisterPage: FC<IProps> = (props) => {
                         },
                       }}
                     >
-                      {fromToNumber(1920, 2009)}
+                      {fromToNumber(1920, new Date().getFullYear())}
                     </Select>
                   </FormControl>
                 </div>

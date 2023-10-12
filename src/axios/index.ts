@@ -49,7 +49,7 @@ axiosClient.interceptors.request.use(async (req: AxiosRequestConfig) => {
       return req;
     }
     req.headers.Authorization = `Bearer ${response.data.accessToken}`;
-    setCookieRefreshToken(response.data.refToken);
+    setCookieRefreshToken(response.data.refreshToken);
     setTokenToCookie(response.data.accessToken);
   }
 

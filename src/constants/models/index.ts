@@ -5,6 +5,6 @@ export interface DataLogin {
 
 export interface LoginResponse {
   accessToken: string;
-  refToken: string;
+  refreshToken: string;
   status: string;
 }
