@@ -1,21 +1,21 @@
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { getRefreshToken, getTokenFromCookie } from './axios/cookie';
-import ProtectedComponent from './components/layouts/ProtectedComponent';
-import AuthPrivate from './pages/auth';
-import LoginPage from './pages/auth/login';
-import { RegisterPage } from './pages/auth/register';
-import { ResetPassword } from './pages/auth/reset';
-import AppOverview from './pages/app';
-import { changeAuthState } from './redux/authSlice';
-import { RootState } from './redux/store';
-import { ModalConfirm } from './shared/modalConfirm';
-import { isValidToken } from './utils';
-import { MeChannel } from './pages/app/channel/@me';
-import { ServersChannel } from './pages/app/channel/servers';
-import { MeChannelMessage } from './pages/app/channel/@me/MeChannelMessage';
-import { MeChannelMain } from './pages/app/channel/@me/MeChannelMain';
+import { getRefreshToken, getTokenFromCookie } from '@config/axios/cookie';
+import ProtectedComponent from '@components/layouts/ProtectedComponent';
+import AuthPrivate from '@pages/auth';
+import LoginPage from '@pages/auth/login';
+import { RegisterPage } from '@pages/auth/register';
+import { ResetPassword } from '@pages/auth/reset';
+import AppOverview from '@pages/app';
+import { changeAuthState } from '@redux/authSlice';
+import { RootState } from '@redux/store';
+import { ModalConfirm } from '@shared/modalConfirm';
+import { isValidToken } from '@utils/index';
+import { MeChannel } from '@pages/app/channel/@me';
+import { ServersChannel } from '@pages/app/channel/servers';
+import { MeChannelMessage } from '@pages/app/channel/@me/MeChannelMessage';
+import { MeChannelMain } from '@pages/app/channel/@me/MeChannelMain';
 
 const darkTheme = createTheme({
   palette: {

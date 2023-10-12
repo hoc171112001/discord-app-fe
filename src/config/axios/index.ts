@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import queryString from 'query-string';
-import { changeAuthState } from '../redux/authSlice';
-import { store } from '../redux/store';
-import { isValidToken } from '../utils';
+import { changeAuthState } from '@redux/authSlice';
+import { store } from '@redux/store';
+import { isValidToken } from '@utils/index';
 import {
   getRefreshToken,
   getTokenFromCookie,
@@ -17,7 +17,7 @@ const axiosClient = axios.create({
   headers: {
     'Content-Type': 'application/json',
   },
-  paramsSerializer: (params) =>
+  paramsSerializer: (params: any) =>
     queryString.stringify(params, { skipNull: true, skipEmptyString: true }),
 });
 
@@ -68,10 +68,10 @@ const sendRefreshToken = async (refreshToken: string) => {
 };
 
 axiosClient.interceptors.response.use(
-  function (response) {
+  function (response: AxiosResponse) {
     return response;
   },
-  function (error) {
+  function (error: AxiosError) {
     return Promise.reject(error);
   },
 );

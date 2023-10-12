@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { AuthBox } from '../../../shared/authBox/authBox';
+import { AuthBox } from '@shared/authBox/authBox';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -14,12 +14,12 @@ import {
 } from '@mui/material';
 import Link from '@mui/material/Link';
 import classnames from 'classnames';
-import { mainApi } from '../../../axios/mainApi';
-import { REGISTER_URL } from '../../../constants';
-import { convertDate } from '../../../utils';
-import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/cookie';
+import { mainApi } from '@config/axios/mainApi';
+import { REGISTER_URL } from '@constants/index';
+import { convertDate } from '@utils/index';
+import { setCookieRefreshToken, setTokenToCookie } from '@config/axios/cookie';
 import { useDispatch } from 'react-redux';
-import { changeAuthState } from '../../../redux/authSlice';
+import { changeAuthState } from '@redux/authSlice';
 interface IProps {}
 
 /**

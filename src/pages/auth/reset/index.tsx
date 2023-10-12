@@ -2,10 +2,11 @@ import { Button, TextField } from '@mui/material';
 import classNames from 'classnames';
 import React, { FC, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { mainApi } from '../../../axios/mainApi';
-import { RESET_PASSWORD_URL } from '../../../constants';
-import { AuthBox } from '../../../shared/authBox/authBox';
-import { useModal } from '../../../shared/Hooks/modal';
+import { mainApi } from '@config/axios/mainApi';
+import { RESET_PASSWORD_URL } from '@constants/index';
+import { AuthBox } from '@shared/authBox/authBox';
+import { useModal } from '@shared/Hooks/modal';
+import reset from '@assets/images/login/reset.svg';
 
 interface IProps {}
 
@@ -43,7 +44,7 @@ export const ResetPassword: FC<IProps> = (props) => {
       body={
         <div className="form_register">
           <div className="heading-formreset">
-            <img src="/assets/images/login/reset.svg" alt="" />
+            <img src={reset} alt="" />
             <h1 className="heading">Change your password</h1>
           </div>
           <div className="form_body">

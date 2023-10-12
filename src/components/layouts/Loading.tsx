@@ -1,12 +1,12 @@
 import React from 'react';
-import twitterlogo from '../../assets/icons/twiiter.svg';
-import serverStatus from '../../assets/icons/server-status.svg';
+import twitterlogo from '@assets/icons/twiiter.svg';
+import serverStatus from '@assets/icons/server-status.svg';
 
 function Loading() {
   return (
     <div className="discord__loading">
       <div className="logo">
-        <video src="/assets/discord-loading.mp4" autoPlay></video>
+        <video src={'/assets/discord-loading.mp4'} autoPlay></video>
       </div>
       <div className="description">
         <div className="">Did you know</div>

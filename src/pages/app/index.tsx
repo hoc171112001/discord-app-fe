@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
-import { mainApi } from '../../axios/mainApi';
-import LoadingFullScreen from '../../components/LoadingFullScreen';
-import { getTokenFromCookie } from '../../axios/cookie';
-import { render } from '@testing-library/react';
+import { mainApi } from '@config/axios/mainApi';
+import LoadingFullScreen from '@components/loadingFullScreen';
+import { getTokenFromCookie } from '@config/axios/cookie';
 import { useDispatch } from 'react-redux';
-import { setPersonal } from '../../redux/channelSlice';
-const _ = require('lodash');
+import { setPersonal } from '@redux/channelSlice';
+import { get } from 'lodash';
+import appLogo from '@assets/images/app/logo.svg';
+import more from '@assets/images/app/plus.svg';
+import explore from 'assets/images/app/comunity.svg';
 
 function AppContainer() {
   const [loading, setLoading] = useState<boolean>(true);
   const [fadeout, setFadeout] = useState<boolean>(false);
   const [focusing, setFocusing] = useState<any>('home');
   const [personalInfo, setPersonalInfo] = useState<any>(null);
-  const [friendsData, setFriendsData] = useState<any>([]);
   const cookieToken: any = getTokenFromCookie();
   const userInfo: any = jwt_decode(cookieToken);
   const userId: string = userInfo?.id;
-  const serverList: any = _.get(personalInfo, 'personal.servers', []);
+  const serverList: any = get(personalInfo, 'personal.servers', []);
   const dispatch = useDispatch();
   useEffect(() => {
     let timeout: any;
@@ -75,7 +76,7 @@ function AppContainer() {
                   nav('/channels/@me');
                 }}
               >
-                <img src="/assets/images/app/logo.svg" alt="" style={{ marginRight: '1px' }} />
+                <img src={appLogo} alt="" style={{ marginRight: '1px' }} />
               </li>
               <li className="separator"></li>
               {serverList &&
@@ -103,10 +104,10 @@ function AppContainer() {
                 ))}
               <li className="separator"></li>
               <li className="server_items server_items--button personal-server ">
-                <img src="/assets/images/app/plus.svg" alt="" style={{ marginRight: '1px' }} />
+                <img src={more} alt="" style={{ marginRight: '1px' }} />
               </li>
               <li className="server_items server_items--button personal-server ">
-                <img src="/assets/images/app/comunity.svg" alt="" style={{ marginRight: '1px' }} />
+                <img src={explore} alt="" style={{ marginRight: '1px' }} />
               </li>
             </ul>
           </div>

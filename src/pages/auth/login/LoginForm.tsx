@@ -8,12 +8,13 @@ import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/cookie';
-import authApi from '../../../axios/login';
-import { mainApi } from '../../../axios/mainApi';
-import { FORGOT_PASSWORD_URL } from '../../../constants';
-import { changeAuthState } from '../../../redux/authSlice';
-import { useModal } from '../../../shared/Hooks/modal';
+import { setCookieRefreshToken, setTokenToCookie } from '@config/axios/cookie';
+import authApi from '@config/axios/login';
+import { mainApi } from '@config/axios/mainApi';
+import { FORGOT_PASSWORD_URL } from '@constants/index';
+import { changeAuthState } from '@redux/authSlice';
+import { useModal } from '@shared/Hooks/modal';
+import QrLogo from '@assets/images/login/logo.png';
 
 LoginForm.propTypes = {};
 
@@ -164,12 +165,7 @@ function LoginForm() {
             style={{ border: '8px solid #fff', borderRadius: '0.5rem', position: 'relative' }}
             level="H"
           ></QRCodeCanvas>
-          <img
-            src="/assets/images/login/logo.png"
-            alt="logo discord"
-            className="login-logo"
-            width={50}
-          />
+          <img src={QrLogo} alt="logo discord" className="login-logo" width={50} />
         </Box>
 
         <Box className="text-center login-qr-heading" component="h3">
