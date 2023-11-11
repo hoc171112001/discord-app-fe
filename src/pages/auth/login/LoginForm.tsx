@@ -158,14 +158,14 @@ function LoginForm() {
       </Grid>
       <Grid item xs={5} className="flex-col-center" style={{ paddingLeft: '3rem' }}>
         <Box className="flex-center" component="div" sx={{ width: '100%', position: 'relative' }}>
-          <QRCodeCanvas
+          {/* <QRCodeCanvas
             value="https://discord.com/downloadddddddddddd"
             size={180}
             bgColor="#fff"
             style={{ border: '8px solid #fff', borderRadius: '0.5rem', position: 'relative' }}
             level="H"
           ></QRCodeCanvas>
-          <img src={QrLogo} alt="logo discord" className="login-logo" width={50} />
+          <img src={QrLogo} alt="logo discord" className="login-logo" width={50} /> */}
         </Box>
 
         <Box className="text-center login-qr-heading" component="h3">
