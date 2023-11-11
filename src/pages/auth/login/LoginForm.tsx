@@ -3,23 +3,23 @@ import { LoadingButton } from '@mui/lab';
 import { Box, Grid, TextField } from '@mui/material';
 import classnames from 'classnames';
 import { QRCodeCanvas } from 'qrcode.react';
-import queryString from 'query-string';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import * as yup from 'yup';
-import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/Cookie';
-import authApi from '../../../axios/login';
-import { mainApi } from '../../../axios/mainApi';
-import { FORGOT_PASSWORD_URL } from '../../../constants';
-import { changeAuthState } from '../../../redux/authSlice';
-import { useModal } from '../../../shared/Hooks/modal';
+import { setCookieRefreshToken, setTokenToCookie } from '@config/axios/cookie';
+import authApi from '@config/axios/login';
+import { mainApi } from '@config/axios/mainApi';
+import { FORGOT_PASSWORD_URL } from '@constants/index';
+import { changeAuthState } from '@redux/authSlice';
+import { useModal } from '@shared/Hooks/modal';
+import QrLogo from '@assets/images/login/logo.png';
 
 LoginForm.propTypes = {};
 
 const LoginSchema = yup.object().shape({
-  username: yup.string().min(6, 'User khong duoc ngan hon 6 ky tu. Ok??').required(),
+  email: yup.string().min(6, 'User khong duoc ngan hon 6 ky tu. Ok??').required(),
   password: yup.string().min(6, 'Password ngan hon 6 ky tu la the lao??').required(),
 });
 
@@ -38,7 +38,7 @@ function LoginForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(LoginSchema),
-    defaultValues: { username: '', password: '' },
+    defaultValues: { email: '', password: '' },
   });
 
   const handleSubmitForm = async (values: any) => {
@@ -47,7 +47,7 @@ function LoginForm() {
       const { data }: any = await authApi.login(values);
       // save user info to local storage
       setTokenToCookie(data.accessToken);
-      setCookieRefreshToken(data.refToken);
+      setCookieRefreshToken(data.refreshToken);
 
       setHasErrorLogin(false);
       // change auth state
@@ -63,30 +63,19 @@ function LoginForm() {
 
   const onClickForgotPassword = async () => {
     try {
-      if (control._formValues?.username) {
+      if (control._formValues?.email) {
         const data = await mainApi.postData(FORGOT_PASSWORD_URL, {
-          username: control._formValues.username,
+          user_email: control._formValues.email,
         });
-        if (data.data.status != 'fail') {
-          modal.openModalConfirm('Instructions sent!', data.data.message, true, 'Accept');
-        } else {
-          modal.openModalConfirm('Failed occurred', data.data.message, true, 'Accept');
-        }
+        modal.openModalConfirm('Instructions sent!', data.data, true, 'Accept');
         sethasErrorForgotPassword(false);
       } else {
         sethasErrorForgotPassword(true);
       }
-    } catch (err) {
-      console.log(err);
+    } catch (err: any) {
+      modal.openModalConfirm('Failed occurred', err.response.data.message, true, 'Accept');
     }
   };
-
-  useEffect(() => {
-    // pass email or username to url (ex: ...email=hoangvanhoc@gmail.com)
-    if (control._formValues.username) {
-      navigate({ search: queryString.stringify({ username: control._formValues.username }) });
-    }
-  }, [control._formValues]);
 
   return (
     <Grid container zIndex={100} className="loginForm">
@@ -101,12 +90,12 @@ function LoginForm() {
                 'label_textfield',
               )}
             >
-              Enter your email or number{' '}
+              Enter your email{' '}
               {hasErrorLogin && <span className="error">- login or password invalid.</span>}
               {hasErrorForgotPassword && <span className="error">- This field is mandatory</span>}
             </label>
             <Controller
-              name="username"
+              name="email"
               control={control}
               render={({ field }) => {
                 return (
@@ -169,19 +158,14 @@ function LoginForm() {
       </Grid>
       <Grid item xs={5} className="flex-col-center" style={{ paddingLeft: '3rem' }}>
         <Box className="flex-center" component="div" sx={{ width: '100%', position: 'relative' }}>
-          <QRCodeCanvas
+          {/* <QRCodeCanvas
             value="https://discord.com/downloadddddddddddd"
             size={180}
             bgColor="#fff"
             style={{ border: '8px solid #fff', borderRadius: '0.5rem', position: 'relative' }}
             level="H"
           ></QRCodeCanvas>
-          <img
-            src="/assets/images/login/logo.png"
-            alt="logo discord"
-            className="login-logo"
-            width={50}
-          />
+          <img src={QrLogo} alt="logo discord" className="login-logo" width={50} /> */}
         </Box>
 
         <Box className="text-center login-qr-heading" component="h3">

@@ -1,6 +1,6 @@
 import axiosClient from '.';
-import { LOGIN_URL } from '../constants';
-import { DataLogin } from '../constants/models';
+import { LOGIN_URL } from '@constants/index';
+import { DataLogin } from '@constants/models';
 
 const authApi = {
   login(data: DataLogin) {

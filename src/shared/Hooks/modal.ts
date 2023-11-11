@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { openModal } from '../../redux/modalSlice';
+import { openModal } from '@redux/modalSlice';
 
 export const useModal = () => {
   const dispatch = useDispatch();

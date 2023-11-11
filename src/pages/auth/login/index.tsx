@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import LoginForm from './LoginForm';
-import { AuthBox } from '../../../shared/authBox/authBox';
+import { AuthBox } from '@shared/authBox/authBox';
 
 index.propTypes = {
   string: PropTypes.string,

@@ -1,7 +1,7 @@
 import { Button } from '@mui/material';
 import React, { FC, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { closeModal } from '../../redux/modalSlice';
+import { closeModal } from '@redux/modalSlice';
 import { AuthBox } from '../authBox/authBox';
 import styles from './modal.module.scss';
 interface IProps {

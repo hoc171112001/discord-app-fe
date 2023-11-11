@@ -1,5 +1,5 @@
 import React, { FC, useState } from 'react';
-import { AuthBox } from '../../../shared/authBox/authBox';
+import { AuthBox } from '@shared/authBox/authBox';
 import { useNavigate } from 'react-router-dom';
 import {
   Button,
@@ -14,12 +14,12 @@ import {
 } from '@mui/material';
 import Link from '@mui/material/Link';
 import classnames from 'classnames';
-import { mainApi } from '../../../axios/mainApi';
-import { REGISTER_URL } from '../../../constants';
-import { convertDate } from '../../../utils';
-import { setCookieRefreshToken, setTokenToCookie } from '../../../axios/Cookie';
+import { mainApi } from '@config/axios/mainApi';
+import { REGISTER_URL } from '@constants/index';
+import { convertDate } from '@utils/index';
+import { setCookieRefreshToken, setTokenToCookie } from '@config/axios/cookie';
 import { useDispatch } from 'react-redux';
-import { changeAuthState } from '../../../redux/authSlice';
+import { changeAuthState } from '@redux/authSlice';
 interface IProps {}
 
 /**
@@ -82,7 +82,7 @@ export const RegisterPage: FC<IProps> = (props) => {
         });
         if (res.data.status == 'success') {
           setTokenToCookie(res.data.accessToken);
-          setCookieRefreshToken(res.data.refToken);
+          setCookieRefreshToken(res.data.refreshToken);
           dispatch(changeAuthState(true));
           navigate('/channels/@me');
         }
@@ -222,7 +222,7 @@ export const RegisterPage: FC<IProps> = (props) => {
                       id="demo-select-small"
                       label="Year"
                       onChange={changeYear}
-                      value={year}
+                      value={year || new Date().getFullYear()}
                       MenuProps={{
                         PaperProps: {
                           style: {
@@ -231,7 +231,7 @@ export const RegisterPage: FC<IProps> = (props) => {
                         },
                       }}
                     >
-                      {fromToNumber(1920, 2009)}
+                      {fromToNumber(1920, new Date().getFullYear())}
                     </Select>
                   </FormControl>
                 </div>
