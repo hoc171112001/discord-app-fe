@@ -1,12 +1,13 @@
-import { TextField } from "@mui/material";
+import { Button, TextField } from "@mui/material";
 import React, { FC } from "react";
-
 interface IProps {}
 
 /**
  * @author
  * @function @RegisterForm
  **/
+
+const label = { inputProps: { "aria-label": "Switch demo" } };
 
 export const RegisterForm: FC<IProps> = (props) => {
   return (
@@ -15,7 +16,10 @@ export const RegisterForm: FC<IProps> = (props) => {
         Create an account
       </h1>
       <div className="form_body">
-        <TextField id="filled-basic" label="account" variant="filled" />
+        <TextField defaultValue="Small" size="small" fullWidth />
+        <Button fullWidth size="large" variant="contained">
+          Continue
+        </Button>
       </div>
     </div>
   );

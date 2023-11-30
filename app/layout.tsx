@@ -19,9 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={opensans.className}>
-        <ThemeRegistry options={{ key: "mui", prepend: true }}>
-          {children}
-        </ThemeRegistry>
+        <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>
       </body>
     </html>
   );

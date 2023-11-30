@@ -1,36 +1,21 @@
 "use client";
+import { useState } from "react";
 import createCache from "@emotion/cache";
 import { useServerInsertedHTML } from "next/navigation";
 import { CacheProvider } from "@emotion/react";
 import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
-import React from "react";
 import { theme } from "./theme";
-
-export interface Options {
-  nonce?: string;
-  stylisPlugins?: Array<any>;
-  key: string;
-  container?: Node;
-  speedy?: boolean;
-  /** @deprecate use `insertionPoint` instead */
-  prepend?: boolean;
-  insertionPoint?: HTMLElement;
-}
 
 // This implementation is from emotion-js
 // https://github.com/emotion-js/emotion/issues/2928#issuecomment-1319747902
-export default function ThemeRegistry(props: {
-  options: Options;
-  children: React.ReactNode;
-}) {
+export default function ThemeRegistry(props: any) {
   const { options, children } = props;
-
-  const [{ cache, flush }] = React.useState(() => {
+  const [{ cache, flush }] = useState(() => {
     const cache = createCache(options);
     cache.compat = true;
     const prevInsert = cache.insert;
-    let inserted: string[] = [];
+    let inserted: any = [];
     cache.insert = (...args) => {
       const serialized = args[1];
       if (cache.inserted[serialized.name] === undefined) {
@@ -45,7 +30,6 @@ export default function ThemeRegistry(props: {
     };
     return { cache, flush };
   });
-
   useServerInsertedHTML(() => {
     const names = flush();
     if (names.length === 0) {
@@ -60,12 +44,11 @@ export default function ThemeRegistry(props: {
         key={cache.key}
         data-emotion={`${cache.key} ${names.join(" ")}`}
         dangerouslySetInnerHTML={{
-          __html: options.prepend ? `@layer emotion {${styles}}` : styles,
+          __html: styles,
         }}
       />
     );
   });
-
   return (
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
