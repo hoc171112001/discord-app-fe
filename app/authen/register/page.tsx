@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { AuthBox } from "@/shared/authBox";
-import { RegisterForm } from "@/components/RegisterForm";
+import { RegisterForm } from "@/components/Register/RegisterForm";
 interface IProps {}
 
 /**
