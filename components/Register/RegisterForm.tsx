@@ -10,7 +10,7 @@ interface IProps {}
  **/
 
 export const RegisterForm: FC<IProps> = async (props) => {
-  const dict = await getRegisterDictionary("en");
+  const dict = await getRegisterDictionary();
   return (
     <div className="form_register">
       <h1 className="heading text-xl text-white font-semibold text-center mb-5">
