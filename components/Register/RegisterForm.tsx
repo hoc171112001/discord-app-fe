@@ -1,7 +1,7 @@
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import React, { FC } from "react";
-import { CollapseDescription } from "./CollapseDescriptionText";
 import { EmailTextField } from "./EmailTextField";
+import { getRegisterDictionary } from "@/locales/authen/register/dictionaries";
 interface IProps {}
 
 /**
@@ -9,13 +9,12 @@ interface IProps {}
  * @function @RegisterForm
  **/
 
-const label = { inputProps: { "aria-label": "Switch demo" } };
-
-export const RegisterForm: FC<IProps> = (props) => {
+export const RegisterForm: FC<IProps> = async (props) => {
+  const dict = await getRegisterDictionary("en");
   return (
     <div className="form_register">
       <h1 className="heading text-xl text-white font-semibold text-center mb-5">
-        Create an account
+        {dict.heading}
       </h1>
       <div className="form_body">
         <EmailTextField />

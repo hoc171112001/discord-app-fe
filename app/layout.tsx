@@ -16,13 +16,9 @@ interface Root {
   params: { lang: string };
 }
 
-export async function generateStaticParams() {
-  return [{ lang: "en-US" }, { lang: "de" }];
-}
-
-export default function RootLayout({ children, params }: Root) {
+export default function RootLayout({ children }: Root) {
   return (
-    <html lang={params.lang}>
+    <html lang={"en"}>
       <body className={opensans.className}>
         <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>
       </body>
