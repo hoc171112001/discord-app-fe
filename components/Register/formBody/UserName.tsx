@@ -8,22 +8,28 @@ interface IProps {}
 
 /**
  * @author
- * @function @EmailTextField
+ * @function @UserName
  **/
 
-export const EmailTextField: FC<IProps> = (props) => {
+export const UserName: FC<IProps> = (props) => {
   const { open, onOpen, onCollapse } = useCollapse();
   return (
     <>
+      <label
+        htmlFor="username"
+        className="text-desc font-semibold text-xs label-required"
+      >
+        USERNAME
+      </label>
       <TextField
-        defaultValue="Small"
         size="small"
+        id="username"
         fullWidth
         onFocus={onOpen}
         onBlur={onCollapse}
       />
       <CollapseDescription open={open}>
-        This is how others see you. You can use special characters and emoji.
+        Please only use numbers, letters, underscores _ , or periods.
       </CollapseDescription>
     </>
   );

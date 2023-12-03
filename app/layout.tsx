@@ -2,6 +2,7 @@ import ThemeRegistry from "@/config/ThemeRegistry";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "@/styles/global.scss";
+import StoreProvider from "../lib/StoreProvider";
 const opensans = Open_Sans({
   weight: ["400", "300", "500", "700"],
   subsets: ["latin"],
@@ -20,7 +21,9 @@ export default function RootLayout({ children }: Root) {
   return (
     <html lang={"en"}>
       <body className={opensans.className}>
-        <ThemeRegistry options={{ key: "mui" }}>{children}</ThemeRegistry>
+        <ThemeRegistry options={{ key: "mui" }}>
+          <StoreProvider>{children}</StoreProvider>
+        </ThemeRegistry>
       </body>
     </html>
   );
