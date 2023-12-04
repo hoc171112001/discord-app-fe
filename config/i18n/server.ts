@@ -1,7 +1,31 @@
 import { createInstance } from "i18next";
 import resourcesToBackend from "i18next-resources-to-backend";
 import { initReactI18next } from "react-i18next/initReactI18next";
-import { fallbackLng, getOptions } from "./settings";
+import { headers } from "next/headers";
+
+const getSelectedLangFromBrowser = () => {
+  const headersList = headers();
+  const languageList = headersList.get("accept-language")?.split(",");
+  const selectedLanguage = languageList?.[0];
+  return selectedLanguage || "en";
+};
+
+const lang = getSelectedLangFromBrowser();
+export const languages = [lang, "de"];
+export const defaultNS = "en";
+export const cookieName = "i18next";
+
+export function getOptions(lng = lang, ns = defaultNS) {
+  return {
+    // debug: true,
+    supportedLngs: languages,
+    lang,
+    lng,
+    fallbackNS: defaultNS,
+    defaultNS,
+    ns,
+  };
+}
 
 const initI18next = async (lng: string, ns: string) => {
   const i18nInstance = createInstance();
@@ -18,10 +42,10 @@ const initI18next = async (lng: string, ns: string) => {
 };
 
 export async function useTranslation(ns: string, options: any = {}) {
-  const i18nextInstance = await initI18next(fallbackLng, ns);
+  const i18nextInstance = await initI18next(lang, ns);
   return {
     t: i18nextInstance.getFixedT(
-      fallbackLng,
+      lang,
       Array.isArray(ns) ? ns[0] : ns,
       options.keyPrefix
     ),

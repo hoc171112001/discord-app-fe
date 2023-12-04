@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import counter from "./features/counter/counter";
+import lang from "./features/lang/lang";
 export default configureStore({
   reducer: {
-    counter,
+    lang,
   },
 });

@@ -1,4 +1,4 @@
-import { useTranslation } from "@/config/i18n";
+import { useTranslation } from "@/config/i18n/server";
 import React, { FC } from "react";
 
 interface IProps {}
