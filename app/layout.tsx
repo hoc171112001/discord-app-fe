@@ -1,4 +1,4 @@
-import ThemeRegistry from "@/config/ThemeRegistry";
+import ThemeRegistry from "@/config/mui/ThemeRegistry";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "@/styles/global.scss";

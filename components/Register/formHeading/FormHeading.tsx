@@ -1,4 +1,4 @@
-import { getRegisterDictionary } from "@/locales/authen/register/dictionaries";
+import { useTranslation } from "@/config/i18n";
 import React, { FC } from "react";
 
 interface IProps {}
@@ -9,10 +9,10 @@ interface IProps {}
  **/
 
 export const FormHeading: FC<IProps> = async (props) => {
-  const dict = await getRegisterDictionary();
+  const { t } = await useTranslation("register");
   return (
     <h1 className="heading text-xl text-white font-semibold text-center mb-5">
-      {dict.heading}
+      {t("heading")}
     </h1>
   );
 };
