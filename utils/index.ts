@@ -17,6 +17,5 @@ export const convertDate = (year: any, month: any, day: any) => {
 export const getLanguage = () => {
   const langList = headers().get("accept-language")?.split(",") || ["en"];
   const lang = langList[0];
-  console.log("lang :", lang);
   return lang;
 };

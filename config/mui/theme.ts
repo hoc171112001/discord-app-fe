@@ -53,5 +53,10 @@ export const theme = createTheme({
         },
       },
     },
+    MuiNativeSelect: {
+      styleOverrides: {
+        icon: "KeyboardArrowDownSharpIcon",
+      },
+    },
   },
 });

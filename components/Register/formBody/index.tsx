@@ -31,7 +31,7 @@ export const FormBody: FC<IProps> = async (props) => {
         description={t("userNameDescription")}
       />
       <Password label={t("passwordLabel")} />
-      <DateOfBirth label={t("dobLabel")} />
+      <DateOfBirth />
       <Button fullWidth size="large" variant="contained">
         {t("submitBtn")}
       </Button>

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { FormHeading } from "./formHeading/FormHeading";
+import { FormHeading } from "./formBody/FormHeading";
 import { FormBody } from "./formBody";
 interface IProps {}
 
