@@ -1,22 +1,26 @@
 "use client";
 import React, { FC } from "react";
-import { CollapseDescription } from "./CollapseDescriptionText";
+import { CollapseDescription } from "../../../shared/CollapseText/CollapseDescriptionText";
 import { TextField } from "@mui/material";
 import { useCollapse } from "@/shared/hooks/useCollapseHook";
+import { BaseClientComponent } from "@/types";
 
-interface IProps {}
+interface IProps extends BaseClientComponent {
+  label: string;
+  description: string;
+}
 
 /**
  * @author
  * @function @DisplayName
  **/
 
-export const DisplayName: FC<IProps> = (props) => {
+export const DisplayName: FC<IProps> = ({ label, description }) => {
   const { open, onOpen, onCollapse } = useCollapse();
   return (
     <>
       <label htmlFor="displayname" className="text-desc font-semibold text-xs">
-        DISPLAY NAME
+        {label}
       </label>
       <TextField
         size="small"
@@ -25,9 +29,7 @@ export const DisplayName: FC<IProps> = (props) => {
         onFocus={onOpen}
         onBlur={onCollapse}
       />
-      <CollapseDescription open={open}>
-        This is how others see you. You can use special characters and emoji.
-      </CollapseDescription>
+      <CollapseDescription open={open}>{description}</CollapseDescription>
     </>
   );
 };

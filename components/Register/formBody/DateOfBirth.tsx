@@ -1,19 +1,22 @@
 "use client";
-import { MenuItem, NativeSelect, Select, TextField } from "@mui/material";
+import { BaseClientComponent } from "@/types";
+import { MenuItem, Select } from "@mui/material";
 import React, { FC } from "react";
 
-interface IProps {}
+interface IProps extends BaseClientComponent {
+  label: string;
+}
 
 /**
  * @author
  * @function @DateOfBirth
  **/
 
-export const DateOfBirth: FC<IProps> = (props) => {
+export const DateOfBirth: FC<IProps> = ({ label }) => {
   return (
     <div className="my-3">
       <label className="text-desc font-semibold text-xs label-required">
-        DATE OF BIRTH
+        {label}
       </label>
       <div className="select-group flex gap-2">
         <Select

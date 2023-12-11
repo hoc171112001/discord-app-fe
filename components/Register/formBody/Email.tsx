@@ -1,25 +1,25 @@
 "use client";
-import { useClientTranslation } from "@/config/i18n/client";
+import { BaseClientComponent } from "@/types";
 import { TextField } from "@mui/material";
 import React, { FC } from "react";
-import { useSelector } from "react-redux";
 
-interface IProps {}
+interface IProps extends BaseClientComponent {
+  label: string;
+}
 
 /**
  * @author
  * @function @Email
  **/
 
-export const Email: FC<IProps> = (props) => {
-  const { t } = useClientTranslation("en", "register");
+export const Email: FC<IProps> = ({ label }) => {
   return (
     <div className="my-3">
       <label
         htmlFor="email"
         className="text-desc font-semibold text-xs label-required"
       >
-        {t("emailLabel")}
+        {label}
       </label>
       <TextField size="small" id="email" type="email" fullWidth />
     </div>

@@ -1,5 +1,11 @@
 {
   "heading": "Create an account",
-  "submitBtn": "Continue",
-  "emailLabel": "EMAIllllllL"
+  "emailLabel": "EMAIL",
+  "displayNameLabel": "DISPLAY NAME",
+  "displayNameDescription": "This is how others see you. You can use special characters and emoji.",
+  "userNameLabel": "USERNAME",
+  "userNameDescription": " Please only use numbers, letters, underscores _ , or periods.",
+  "passwordLabel": "PASSWORD",
+  "dobLabel": "DATE OF BIRTH",
+  "submitBtn": "Continue"
 }

@@ -2,7 +2,8 @@ import ThemeRegistry from "@/config/mui/ThemeRegistry";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
 import "@/styles/global.scss";
-import StoreProvider from "../lib/StoreProvider";
+import StoreProvider from "@/lib/StoreProvider";
+import { cookies } from "next/headers";
 const opensans = Open_Sans({
   weight: ["400", "300", "500", "700"],
   subsets: ["latin"],
@@ -17,7 +18,7 @@ interface Root {
   params: { lang: string };
 }
 
-export default function RootLayout({ children }: Root) {
+export default async function RootLayout({ children }: Root) {
   return (
     <html lang={"en"}>
       <body className={opensans.className}>

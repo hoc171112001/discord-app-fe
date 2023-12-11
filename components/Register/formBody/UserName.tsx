@@ -1,17 +1,21 @@
 "use client";
 import React, { FC } from "react";
-import { CollapseDescription } from "./CollapseDescriptionText";
+import { CollapseDescription } from "../../../shared/CollapseText/CollapseDescriptionText";
 import { TextField } from "@mui/material";
 import { useCollapse } from "@/shared/hooks/useCollapseHook";
+import { BaseClientComponent } from "@/types";
 
-interface IProps {}
+interface IProps extends BaseClientComponent {
+  label: string;
+  description: string;
+}
 
 /**
  * @author
  * @function @UserName
  **/
 
-export const UserName: FC<IProps> = (props) => {
+export const UserName: FC<IProps> = ({ description, label }) => {
   const { open, onOpen, onCollapse } = useCollapse();
   return (
     <>
@@ -19,7 +23,7 @@ export const UserName: FC<IProps> = (props) => {
         htmlFor="username"
         className="text-desc font-semibold text-xs label-required"
       >
-        USERNAME
+        {label}
       </label>
       <TextField
         size="small"
@@ -28,9 +32,7 @@ export const UserName: FC<IProps> = (props) => {
         onFocus={onOpen}
         onBlur={onCollapse}
       />
-      <CollapseDescription open={open}>
-        Please only use numbers, letters, underscores _ , or periods.
-      </CollapseDescription>
+      <CollapseDescription open={open}>{description}</CollapseDescription>
     </>
   );
 };
