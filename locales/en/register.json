@@ -10,5 +10,6 @@
   "submitBtn": "Continue",
   "monthPlaceholder": "Month",
   "dayPlaceholder": "Day",
-  "yearPlaceholder": "Year"
+  "yearPlaceholder": "Year",
+  "registerMailAnoucement": "(Optional) It’s okay to send me emails with Discord updates, tips, and special offers. You can opt out at any time."
 }
