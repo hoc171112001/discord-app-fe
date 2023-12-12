@@ -8,7 +8,17 @@ interface IProps {}
  * @function @RegisterPage
  **/
 
-const RegisterPage: FC<IProps> = (props) => {
+const debounce3Sec = async () => {
+  const promise = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve("");
+    }, 3000);
+  });
+  return promise;
+};
+
+const RegisterPage: FC<IProps> = async (props) => {
+  await debounce3Sec();
   return <AuthBox body={<RegisterForm />} />;
 };
 
