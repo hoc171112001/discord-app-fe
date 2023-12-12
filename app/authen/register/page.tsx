@@ -18,7 +18,7 @@ const debounce3Sec = async () => {
 };
 
 const RegisterPage: FC<IProps> = async (props) => {
-  await debounce3Sec();
+  // await debounce3Sec();
   return <AuthBox body={<RegisterForm />} />;
 };
 
