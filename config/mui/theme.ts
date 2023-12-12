@@ -38,7 +38,7 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           backgroundColor: "#1e1f22",
-          color: "#aaa",
+          color: THEME_COLOR.TEXT_DESC,
         },
       },
     },
@@ -56,6 +56,30 @@ export const theme = createTheme({
     MuiNativeSelect: {
       styleOverrides: {
         icon: "KeyboardArrowDownSharpIcon",
+      },
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          padding: "0px",
+        },
+      },
+      defaultProps: {
+        sx: {
+          color: THEME_COLOR.TEXT_DESC,
+        },
+      },
+    },
+    MuiFormControlLabel: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+          "& .MuiFormControlLabel-label": {
+            paddingLeft: "8px",
+            fontSize: "12px",
+            color: THEME_COLOR.TEXT_DESC,
+          },
+        },
       },
     },
   },

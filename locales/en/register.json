@@ -11,5 +11,10 @@
   "monthPlaceholder": "Month",
   "dayPlaceholder": "Day",
   "yearPlaceholder": "Year",
-  "registerMailAnoucement": "(Optional) It’s okay to send me emails with Discord updates, tips, and special offers. You can opt out at any time."
+  "registerMailAnnouncement": "(Optional) It’s okay to send me emails with Discord updates, tips, and special offers. You can opt out at any time.",
+  "and": "and",
+  "policyDesc": "By registering, you agree to Discord's",
+  "termOfService": "Terms of Service",
+  "privacy": "Privacy Policy",
+  "haveAnAccount": "Already have an account?"
 }

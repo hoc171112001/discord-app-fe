@@ -7,6 +7,9 @@ import { Password } from "./Password";
 import { DateOfBirth } from "./DateOfBirth";
 import { getLanguage } from "@/utils";
 import { useServerTranslation } from "@/config/i18n/server";
+import { EmailAnnouncement } from "./EmailAnoucement";
+import { MoreInfo } from "./RegisterMoreInfo";
+import { LinkToLogin } from "./LinkToLogin";
 
 interface IProps {}
 
@@ -32,9 +35,12 @@ export const FormBody: FC<IProps> = async (props) => {
       />
       <Password label={t("passwordLabel")} />
       <DateOfBirth />
+      <EmailAnnouncement lang={lang} />
       <Button fullWidth size="large" variant="contained">
         {t("submitBtn")}
       </Button>
+      <MoreInfo lang={lang} />
+      <LinkToLogin lang={lang} />
     </div>
   );
 };

@@ -18,7 +18,7 @@ interface IProps extends BaseClientComponent {
 export const DisplayName: FC<IProps> = ({ label, description }) => {
   const { open, onOpen, onCollapse } = useCollapse();
   return (
-    <div className="my-3">
+    <div className="my-4">
       <label htmlFor="displayname" className="text-desc font-semibold text-xs">
         {label}
       </label>

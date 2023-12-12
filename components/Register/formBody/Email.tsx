@@ -14,7 +14,7 @@ interface IProps extends BaseClientComponent {
 
 export const Email: FC<IProps> = ({ label }) => {
   return (
-    <div className="my-3">
+    <div className="my-4">
       <label
         htmlFor="email"
         className="text-desc font-semibold text-xs label-required"

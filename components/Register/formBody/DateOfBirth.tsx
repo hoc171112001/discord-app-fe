@@ -24,7 +24,7 @@ interface IProps extends BaseClientComponent {}
 export const DateOfBirth: FC<IProps> = ({ lang }) => {
   const { t } = useClientTranslation(lang as string, "register");
   return (
-    <div className="my-3">
+    <div className="my-4">
       <label className="text-desc font-semibold text-xs label-required">
         {t("dobLabel")}
       </label>
