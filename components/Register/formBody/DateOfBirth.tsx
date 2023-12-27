@@ -4,6 +4,7 @@ import { BaseClientComponent } from "@/types";
 import { MenuItem, Select } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
 import React, { FC } from "react";
+import { MONTH_KEYS } from "@/app/authen/register/constants";
 
 const selectProps: any = {
   displayEmpty: true,
@@ -12,6 +13,46 @@ const selectProps: any = {
   IconComponent: () => <KeyboardArrowDownSharpIcon style={{ color: "#aaa" }} />,
   inputProps: { "aria-label": "Without label" },
   defaultValue: "",
+  MenuProps: {
+    classes: { list: "custom-select" },
+    PaperProps: {
+      style: {
+        maxHeight: 160,
+        color: "#aaa",
+      },
+    },
+  },
+};
+
+const getMonthsOption = (t: Function) => {
+  return MONTH_KEYS.map((month: { key: string; value: number }) => (
+    <MenuItem key={month.key} value={month.value}>
+      {t(month.key)}
+    </MenuItem>
+  ));
+};
+
+const generateDaysInMonth = () => {
+  const days = Array.from({ length: 31 }, (_, index) => index + 1);
+  return days.map((days) => (
+    <MenuItem key={days} value={days}>
+      {days}
+    </MenuItem>
+  ));
+};
+
+const generateYear = () => {
+  const years = Array.from({ length: 100 }, (_, index) => {
+    if (index + 1970 > 2020) return;
+    return index + 1970;
+  });
+  return years.map((years) =>
+    years ? (
+      <MenuItem key={years} value={years}>
+        {years}
+      </MenuItem>
+    ) : null
+  );
 };
 
 interface IProps extends BaseClientComponent {}
@@ -30,28 +71,22 @@ export const DateOfBirth: FC<IProps> = ({ lang }) => {
       </label>
       <div className="select-group flex gap-2">
         <Select {...selectProps}>
-          <MenuItem value="" disabled>
+          <MenuItem value="" style={{ display: "none" }}>
             <em>{t("monthPlaceholder")}</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {getMonthsOption(t)}
         </Select>
         <Select {...selectProps}>
-          <MenuItem value="">
+          <MenuItem style={{ display: "none" }} value="">
             <em>{t("dayPlaceholder")}</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {generateDaysInMonth()}
         </Select>
         <Select {...selectProps}>
-          <MenuItem value="">
+          <MenuItem style={{ display: "none" }} value="">
             <em>{t("yearPlaceholder")}</em>
           </MenuItem>
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {generateYear()}
         </Select>
       </div>
     </div>

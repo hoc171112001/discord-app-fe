@@ -13,3 +13,21 @@
 .text-ss {
   font-size: 11px;
 }
+.bg-primary{
+}
+.custom-select{
+  background-color: $background_color;
+  ::-webkit-scrollbar-track {
+    background: $background_color; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #c50101; 
+  }
+}

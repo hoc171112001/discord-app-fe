@@ -3,4 +3,5 @@ export const THEME_COLOR = {
   TEXT_WHITE: "#fff",
   ERROR_MAIN: "#f38688",
   TEXT_DESC: "#aaa",
+  BG_COLOR:"#36393f"
 };

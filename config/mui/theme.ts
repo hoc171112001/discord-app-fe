@@ -82,5 +82,22 @@ export const theme = createTheme({
         },
       },
     },
+    MuiCssBaseline: {
+      styleOverrides: {
+        body: {
+          "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
+            backgroundColor:  THEME_COLOR.BG_COLOR,
+            width: 4,
+          },
+          "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
+            borderRadius: 8,
+            backgroundColor:  '#1e1f22',
+          },
+          "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
+            backgroundColor:  THEME_COLOR.BG_COLOR,
+          },
+        },
+      },
+    },
   },
 });
