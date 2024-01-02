@@ -1,6 +1,7 @@
 import React, { FC } from "react";
 import { AuthBox } from "@/shared/authBox";
 import { RegisterForm } from "@/components/Register/RegisterForm";
+import { Metadata } from "next";
 interface IProps {}
 
 /**
@@ -16,6 +17,11 @@ const debounce3Sec = async () => {
   });
   return promise;
 };
+
+export const metadata: Metadata = {
+  title: 'Discord | register',
+  description: '...',
+}
 
 const RegisterPage: FC<IProps> = async (props) => {
   // await debounce3Sec();

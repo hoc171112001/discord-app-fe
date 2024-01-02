@@ -1,0 +1,12 @@
+{
+  "heading": "Welcom back!",
+  "headingDesc": "We're so excited to see you again!",
+  "emailOrPassword": "EMAIL OR PASSWORD",
+  "password": "PASSWORD",
+  "forgotPw": "Forgot your password?",
+  "submitBtn": "Login",
+  "needAccount": "Need an account? ",
+  "register": "Register",
+  "qrTitle":"Log in with Qr Code",
+  "qrDesc":"Scan with the Discord mobile app to log in instantly."
+}
