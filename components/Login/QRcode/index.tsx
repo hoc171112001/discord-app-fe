@@ -17,7 +17,6 @@ export const LoginQrCode: FC<IProps> = async (props) => {
     <div className="flex items-center justify-center flex-col" style={{marginRight: -16}}>
       <div className="qr-wrapper">
         <QRCode
-          size={256}
           style={{ height: "auto", maxWidth: "100%", width: "100%" }}
           value={"afsjdadgasjhdgajhdsgdjhagdahsjagdhagdjshagsjhdgajhsdg"}
         />
