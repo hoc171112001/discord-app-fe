@@ -1,4 +1,4 @@
-body {
+.wrapper {
   background-color: $background_color;
   color: $primary_color;
   user-select: none;
@@ -11,6 +11,13 @@ body {
   justify-content: center;
   align-items: center;
   background: url("/auth-bg.svg") no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.sb-show-main {
+  background: url("https://assets-global.website-files.com/623b578041aa1f5fc6e3adc2/623cd512a35eb825288c6abb_Building%20a%20Home%20For%20Your%20Community.svg")
+    no-repeat;
   background-position: center;
   background-size: cover;
 }

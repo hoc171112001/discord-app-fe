@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import styles from "./authbox.module.scss";
 interface IProps {
-  width?: string;
+  width?: string | number;
   header?: any;
   body?: any;
   style?: any;
@@ -15,7 +15,7 @@ interface IProps {
 export const AuthBox: FC<IProps> = (props) => {
   return (
     <div
-      style={{ width: props.width || "480px", ...props.style }}
+      style={{ width: props.width || 480, ...props.style }}
       className={styles.authbox}
     >
       {props.header}

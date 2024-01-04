@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: "Discord lite",
   description: "...",
   icons: {
-    icon: '/fav.png',
+    icon: "/fav.png",
   },
 };
 

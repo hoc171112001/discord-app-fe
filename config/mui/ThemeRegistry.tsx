@@ -53,7 +53,7 @@ export default function ThemeRegistry(props: any) {
     <CacheProvider value={cache}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        {children}
+        <div className="wrapper">{children}</div>
       </ThemeProvider>
     </CacheProvider>
   );
