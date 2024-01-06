@@ -15,7 +15,7 @@ interface IProps {
 export const AuthBox: FC<IProps> = (props) => {
   return (
     <div
-      style={{ width: props.width || 480, ...props.style }}
+      style={{ width: props.width || 490, ...props.style }}
       className={styles.authbox}
     >
       {props.header}

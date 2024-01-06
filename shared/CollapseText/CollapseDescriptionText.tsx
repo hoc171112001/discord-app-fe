@@ -13,8 +13,13 @@ interface IProps {
 
 export const CollapseDescription: FC<IProps> = ({ open, children }) => {
   return (
-    <Collapse in={open} collapsedSize={0} className="my-1">
-      <span className="text-xs text-desc">{children}</span>
+    <Collapse in={open} collapsedSize={0}>
+      <span
+        className="text-desc text-small font-medium"
+        style={{ lineHeight: "34px" }}
+      >
+        {children}
+      </span>
     </Collapse>
   );
 };

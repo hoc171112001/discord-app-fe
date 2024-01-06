@@ -66,7 +66,7 @@ export const DateOfBirth: FC<IProps> = ({ lang }) => {
   const { t } = useClientTranslation(lang as string, "register");
   return (
     <div className="my-4">
-      <label className="text-desc font-semibold text-xs label-required">
+      <label className="text-desc font-semibold mb-2 text-xs label-required inline-block">
         {t("dobLabel")}
       </label>
       <div className="select-group flex gap-2">

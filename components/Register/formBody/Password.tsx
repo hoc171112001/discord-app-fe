@@ -17,7 +17,7 @@ export const Password: FC<IProps> = ({ label }) => {
     <div className="my-4">
       <label
         htmlFor="password"
-        className="text-desc font-semibold text-xs label-required"
+        className="text-desc font-semibold mb-2 text-xs label-required inline-block"
       >
         {label}
       </label>

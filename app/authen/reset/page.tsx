@@ -20,7 +20,7 @@ const ResetPwBody = async () => {
       </h1>
       <label
         htmlFor="password"
-        className="text-desc font-semibold text-xs label-required"
+        className="text-desc font-semibold mb-2 inline-block text-xs label-required"
       >
         {t("newPw")}
       </label>

@@ -19,7 +19,10 @@ export const DisplayName: FC<IProps> = ({ label, description }) => {
   const { open, onOpen, onCollapse } = useCollapse();
   return (
     <div className="my-4">
-      <label htmlFor="displayname" className="text-desc font-semibold text-xs">
+      <label
+        htmlFor="displayname"
+        className="text-desc font-semibold mb-2 text-xs inline-block"
+      >
         {label}
       </label>
       <TextField
