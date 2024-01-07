@@ -45,12 +45,12 @@ export const UserName: FC<IProps> = ({
         {t("userNameLabel")}
       </StatusAdditionLabel>
       <TextField
+        {...register(fieldName)}
         size="small"
         id={fieldName}
         fullWidth
         onFocus={onOpen}
         onBlur={onCollapse}
-        {...register(fieldName)}
       />
       <CollapseDescription open={open}>
         {t("userNameDescription")}

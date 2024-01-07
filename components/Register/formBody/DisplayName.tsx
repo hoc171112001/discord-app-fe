@@ -29,12 +29,12 @@ export const DisplayName: FC<IProps> = ({ register, lang }) => {
         {t("displayNameLabel")}
       </label>
       <TextField
+        {...register("displayName")}
         size="small"
         id="displayname"
         fullWidth
         onFocus={onOpen}
         onBlur={onCollapse}
-        {...register("displayName")}
       />
       <CollapseDescription open={open}>
         {t("displayNameDescription")}
