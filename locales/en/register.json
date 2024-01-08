@@ -29,5 +29,6 @@
   "october": "October",
   "november": "November",
   "december": "December",
-  "required": "Required"
+  "required": "Required",
+  "userNameAvailable": "Username is available. Nice!"
 }

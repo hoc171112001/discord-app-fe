@@ -9,6 +9,8 @@ import { RegisterFormValues } from '.';
 import { useClientTranslation } from '@/config/i18n/client';
 import { useShowAdditionText } from '@/shared/hooks/useShowAdditionText';
 import { StatusAdditionLabel } from '@/shared/StatusAdditionLabel';
+import { useCheckValidFormValueByRegex } from '@/shared/hooks/useValidFormValueByRegex';
+import { VALIDATE_USERNAME_REGEX } from '@/constants';
 
 interface IProps extends BaseClientComponent, IFormEntries<RegisterFormValues> {}
 
@@ -26,6 +28,26 @@ export const UserName: FC<IProps> = ({ register, control, isSubmited, lang }) =>
     isSubmited
   });
   const { t } = useClientTranslation(lang as string, 'register');
+
+  const { isValid, value } = useCheckValidFormValueByRegex<RegisterFormValues>({
+    control,
+    name: fieldName,
+    patern: VALIDATE_USERNAME_REGEX
+  });
+
+  const onBlurTextField = () => {
+    if (!isValid && value) return;
+    onCollapse();
+  };
+
+  const getColor = () => {
+    if (!value) return 'default';
+    if (!isValid) {
+      return 'error';
+    }
+    return 'success';
+  };
+
   return (
     <>
       <StatusAdditionLabel
@@ -37,8 +59,17 @@ export const UserName: FC<IProps> = ({ register, control, isSubmited, lang }) =>
       >
         {t('userNameLabel')}
       </StatusAdditionLabel>
-      <TextField {...register(fieldName)} size="small" id={fieldName} fullWidth onFocus={onOpen} onBlur={onCollapse} />
-      <CollapseDescription open={open}>{t('userNameDescription')}</CollapseDescription>
+      <TextField
+        {...register(fieldName)}
+        size="small"
+        id={fieldName}
+        fullWidth
+        onFocus={onOpen}
+        onBlur={onBlurTextField}
+      />
+      <CollapseDescription open={open} color={getColor()}>
+        {t('userNameDescription')}
+      </CollapseDescription>
     </>
   );
 };
