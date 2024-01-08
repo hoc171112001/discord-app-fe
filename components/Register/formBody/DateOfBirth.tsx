@@ -3,8 +3,9 @@ import { useClientTranslation } from "@/config/i18n/client";
 import { BaseClientComponent } from "@/types";
 import { MenuItem, Select } from "@mui/material";
 import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import React, { FC } from "react";
+import React, { FC, useEffect, useState } from "react";
 import { MONTH_KEYS } from "@/app/authen/register/constants";
+import { StatusAdditionLabel } from "@/shared/StatusAdditionLabel";
 
 const selectProps: any = {
   displayEmpty: true,
@@ -26,7 +27,7 @@ const selectProps: any = {
 
 const getMonthsOption = (t: Function) => {
   return MONTH_KEYS.map((month: { key: string; value: number }) => (
-    <MenuItem key={month.key} value={month.value}>
+    <MenuItem key={month.key} value={(month.value + 1).toString()}>
       {t(month.key)}
     </MenuItem>
   ));
@@ -35,7 +36,7 @@ const getMonthsOption = (t: Function) => {
 const generateDaysInMonth = () => {
   const days = Array.from({ length: 31 }, (_, index) => index + 1);
   return days.map((days) => (
-    <MenuItem key={days} value={days}>
+    <MenuItem key={days} value={(days + 1).toString()}>
       {days}
     </MenuItem>
   ));
@@ -48,41 +49,91 @@ const generateYear = () => {
   });
   return years.map((years) =>
     years ? (
-      <MenuItem key={years} value={years}>
+      <MenuItem key={years} value={years.toString()}>
         {years}
       </MenuItem>
     ) : null
   );
 };
 
-interface IProps extends BaseClientComponent {}
+interface IDobValues {
+  day: string;
+  month: string;
+  year: string;
+}
+
+const defaultValue: IDobValues = {
+  day: "",
+  month: "",
+  year: "",
+};
+
+const fieldName = "dob";
+
+const isAllKeyHasValue = (object: Object) => {
+  const rs = Object.values(object).every((v) => !!v);
+  console.log("rs :", rs);
+  return rs;
+};
+
+interface IProps extends BaseClientComponent {
+  isSubmited: boolean;
+  setFormValue: (name: "dob", value: string) => void;
+}
 
 /**
  * @author
  * @function @DateOfBirth
  **/
 
-export const DateOfBirth: FC<IProps> = ({ lang }) => {
+export const DateOfBirth: FC<IProps> = ({ lang, isSubmited, setFormValue }) => {
+  const [dobValues, setDobValues] = useState<IDobValues>(defaultValue);
+  const [showAdditionText, setShowAdditionText] = useState<boolean>(false);
   const { t } = useClientTranslation(lang as string, "register");
+  const onChangeDob = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setDobValues((prev) => ({
+      ...prev,
+      [event.target.name]: event.target.value,
+    }));
+  };
+  useEffect(() => {
+    if (!isAllKeyHasValue(dobValues)) {
+      if (!isSubmited) return;
+      setShowAdditionText(true);
+      return;
+    }
+    setFormValue(
+      "dob",
+      `${dobValues.day}/${dobValues.month}/${dobValues.year}`
+    );
+    setShowAdditionText(false);
+  }, [dobValues, isSubmited]);
+
   return (
     <div className="my-4">
-      <label className="text-desc font-semibold mb-2 text-xs label-required inline-block">
+      <StatusAdditionLabel
+        type="error"
+        htmlFor={fieldName}
+        required={true}
+        showAdditionText={showAdditionText}
+        additionText={t("required")}
+      >
         {t("dobLabel")}
-      </label>
+      </StatusAdditionLabel>
       <div className="select-group flex gap-2">
-        <Select {...selectProps}>
+        <Select {...selectProps} name="month" onChange={onChangeDob}>
           <MenuItem value="" style={{ display: "none" }}>
             <em>{t("monthPlaceholder")}</em>
           </MenuItem>
           {getMonthsOption(t)}
         </Select>
-        <Select {...selectProps}>
+        <Select {...selectProps} name="day" onChange={onChangeDob}>
           <MenuItem style={{ display: "none" }} value="">
             <em>{t("dayPlaceholder")}</em>
           </MenuItem>
           {generateDaysInMonth()}
         </Select>
-        <Select {...selectProps}>
+        <Select {...selectProps} name="year" onChange={onChangeDob}>
           <MenuItem style={{ display: "none" }} value="">
             <em>{t("yearPlaceholder")}</em>
           </MenuItem>

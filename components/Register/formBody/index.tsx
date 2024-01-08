@@ -18,6 +18,8 @@ export interface RegisterFormValues {
   displayName: string;
   password: string;
   emailInformRegistry: boolean;
+  userName: string;
+  dob: string;
 }
 
 interface IProps extends BaseClientComponent {}
@@ -30,7 +32,8 @@ interface IProps extends BaseClientComponent {}
 export const FormBody: FC<IProps> = ({ lang }) => {
   const [isSubmited, setIsSubmited] = useState(false);
   const { t } = useClientTranslation(lang as string, "register");
-  const { register, handleSubmit, control } = useForm<RegisterFormValues>();
+  const { register, handleSubmit, control, setValue } =
+    useForm<RegisterFormValues>();
   const onSubmit: SubmitHandler<RegisterFormValues> = async (
     data: RegisterFormValues
   ) => {
@@ -41,22 +44,30 @@ export const FormBody: FC<IProps> = ({ lang }) => {
   return (
     <form className="form_body" onSubmit={handleSubmit(onSubmit)}>
       <Email
-        label={t("emailLabel")}
         register={register}
         control={control}
         isSubmited={isSubmited}
+        lang={lang}
       />
-      <DisplayName
-        label={t("displayNameLabel")}
-        description={t("displayNameDescription")}
-      />
+      <DisplayName register={register} lang={lang} />
       <UserName
-        label={t("userNameLabel")}
-        description={t("userNameDescription")}
+        register={register}
+        control={control}
+        lang={lang}
+        isSubmited={isSubmited}
       />
-      <Password label={t("passwordLabel")} />
-      <DateOfBirth />
-      <EmailAnnouncement lang={lang} />
+      <Password
+        register={register}
+        control={control}
+        lang={lang}
+        isSubmited={isSubmited}
+      />
+      <DateOfBirth
+        lang={lang}
+        isSubmited={isSubmited}
+        setFormValue={setValue}
+      />
+      <EmailAnnouncement lang={lang} register={register} />
       <Button fullWidth size="large" variant="contained" type="submit">
         {t("submitBtn")}
       </Button>
