@@ -1,11 +1,11 @@
-import { AuthBox } from "@/shared/authBox";
-import Image from "next/image";
-import React, { FC } from "react";
-import resetImg from "@/public/reset-pw.svg";
-import { Button, TextField } from "@mui/material";
 import { useServerTranslation } from "@/config/i18n/server";
+import resetImg from "@/public/reset-pw.svg";
+import { AuthBox } from "@/shared/authBox";
 import { getLanguage } from "@/utils";
+import { Button, TextField } from "@mui/material";
+import Image from "next/image";
 const lang = getLanguage();
+
 const ResetPwBody = async () => {
   const { t } = await useServerTranslation(lang, "reset");
   return (

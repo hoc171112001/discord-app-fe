@@ -1,5 +1,5 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import { useState } from 'react';
 
 /**
  * @author
@@ -13,6 +13,6 @@ export const useCollapse = () => {
   return {
     open,
     onOpen,
-    onCollapse,
+    onCollapse
   };
 };

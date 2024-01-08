@@ -1,8 +1,8 @@
 import { useServerTranslation } from "@/config/i18n/server";
 import { getLanguage } from "@/utils";
-import React, { FC } from "react";
+import { FC } from "react";
 import QRCode from "react-qr-code";
-interface IProps {}
+interface IProps { }
 
 /**
  * @author
@@ -11,10 +11,10 @@ interface IProps {}
 
 const lang = getLanguage();
 
-export const LoginQrCode: FC<IProps> = async (props) => {
+export const LoginQrCode: FC<IProps> = async () => {
   const { t } = await useServerTranslation(lang, "login");
   return (
-    <div className="flex items-center justify-center flex-col" style={{marginRight: -16}}>
+    <div className="flex items-center justify-center flex-col" style={{ marginRight: -16 }}>
       <div className="qr-wrapper">
         <QRCode
           style={{ height: "auto", maxWidth: "100%", width: "100%" }}

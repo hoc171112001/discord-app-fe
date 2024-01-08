@@ -6,6 +6,7 @@
     "plugin:react/recommended",
     "prettier"
   ],
+  "parser": "@typescript-eslint/parser",
   "settings": {
     "react": {
       "pragma": "React", // Pragma to use, default to "React"
@@ -15,7 +16,9 @@
       "node": {
         "extensions": [
           ".js",
-          ".jsx"
+          ".jsx",
+          ".ts",
+          ".tsx"
         ]
       }
     }
@@ -25,6 +28,18 @@
       "error",
       {
         "argsIgnorePattern": "^_"
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
       }
     ]
   }

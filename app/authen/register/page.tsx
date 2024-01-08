@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import { FC } from "react";
 import { AuthBox } from "@/shared/authBox";
 import { RegisterForm } from "@/components/Register/RegisterForm";
 import { Metadata } from "next";

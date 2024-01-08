@@ -1,18 +1,17 @@
-"use client";
+// "use client";
+import { useClientTranslation } from "@/config/i18n/client";
+import { StatusAdditionLabel } from "@/shared/StatusAdditionLabel";
+import { useShowAdditionText } from "@/shared/hooks/useShowAdditionText";
 import { BaseClientComponent } from "@/types";
 import { TextField } from "@mui/material";
-import React, { FC, useEffect, useState } from "react";
-import { Control, useWatch } from "react-hook-form";
+import { FC } from "react";
 import { RegisterFormValues } from ".";
-import { StatusAdditionLabel } from "@/shared/StatusAdditionLabel";
-import { useClientTranslation } from "@/config/i18n/client";
 import { IFormEntries } from "./types";
-import { useShowAdditionText } from "@/shared/hooks/useShowAdditionText";
 
 const fieldName = "email";
 interface IProps
   extends BaseClientComponent,
-    IFormEntries<RegisterFormValues> {}
+  IFormEntries<RegisterFormValues> { }
 
 /**
  * @author

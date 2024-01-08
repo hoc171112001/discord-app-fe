@@ -1,11 +1,10 @@
-"use client";
-import { useClientTranslation } from "@/config/i18n/client";
-import { BaseClientComponent } from "@/types";
-import { MenuItem, Select } from "@mui/material";
-import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
-import React, { FC, useEffect, useState } from "react";
 import { MONTH_KEYS } from "@/app/authen/register/constants";
+import { useClientTranslation } from "@/config/i18n/client";
 import { StatusAdditionLabel } from "@/shared/StatusAdditionLabel";
+import { BaseClientComponent } from "@/types";
+import KeyboardArrowDownSharpIcon from "@mui/icons-material/KeyboardArrowDownSharp";
+import { MenuItem, Select } from "@mui/material";
+import React, { FC, useEffect, useState } from "react";
 
 const selectProps: any = {
   displayEmpty: true,
@@ -78,7 +77,7 @@ const isAllKeyHasValue = (object: Object) => {
 
 interface IProps extends BaseClientComponent {
   isSubmited: boolean;
-  setFormValue: (name: "dob", value: string) => void;
+  setFormValue: (_name: "dob", _value: string) => void;
 }
 
 /**
@@ -107,6 +106,7 @@ export const DateOfBirth: FC<IProps> = ({ lang, isSubmited, setFormValue }) => {
       `${dobValues.day}/${dobValues.month}/${dobValues.year}`
     );
     setShowAdditionText(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dobValues, isSubmited]);
 
   return (

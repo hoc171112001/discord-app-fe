@@ -1,16 +1,16 @@
 "use client";
-import { BaseClientComponent } from "@/types";
-import { TextField } from "@mui/material";
-import React, { FC } from "react";
-import { IFormEntries } from "./types";
-import { RegisterFormValues } from ".";
 import { useClientTranslation } from "@/config/i18n/client";
 import { StatusAdditionLabel } from "@/shared/StatusAdditionLabel";
 import { useShowAdditionText } from "@/shared/hooks/useShowAdditionText";
+import { BaseClientComponent } from "@/types";
+import { TextField } from "@mui/material";
+import { FC } from "react";
+import { RegisterFormValues } from ".";
+import { IFormEntries } from "./types";
 
 interface IProps
   extends BaseClientComponent,
-    IFormEntries<RegisterFormValues> {}
+  IFormEntries<RegisterFormValues> { }
 
 /**
  * @author
@@ -18,7 +18,6 @@ interface IProps
  **/
 
 export const Password: FC<IProps> = ({
-  register,
   control,
   isSubmited,
   lang,

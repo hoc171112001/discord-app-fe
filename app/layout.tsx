@@ -1,9 +1,9 @@
 import ThemeRegistry from "@/config/mui/ThemeRegistry";
+import StoreProvider from "@/lib/StoreProvider";
+import "@/styles/global.scss";
 import type { Metadata } from "next";
 import { Open_Sans } from "next/font/google";
-import "@/styles/global.scss";
-import StoreProvider from "@/lib/StoreProvider";
-import { cookies, headers } from "next/headers";
+import { ReactNode } from "react";
 const opensans = Open_Sans({
   weight: ["400", "300", "500", "700"],
   subsets: ["latin"],
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 };
 
 interface Root {
-  children: React.ReactNode;
+  children: ReactNode;
   params: { lang: string };
 }
 

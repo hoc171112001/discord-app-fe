@@ -1,19 +1,18 @@
 import { useServerTranslation } from "@/config/i18n/server";
 import { getLanguage } from "@/utils";
-import { TextField } from "@mui/material";
-import React, { FC } from "react";
+import { FC } from "react";
 import { LoginEntries } from "./entries";
 
 const lang = getLanguage();
 
-interface IProps {}
+interface IProps { }
 
 /**
  * @author
  * @function @LoginInput
  **/
 
-export const LoginInput: FC<IProps> = async (props) => {
+export const LoginInput: FC<IProps> = async () => {
   const { t } = await useServerTranslation(lang, "login");
   return (
     <div className="basis-3/5">
