@@ -14,6 +14,7 @@ const meta = {
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
     open: { type: 'boolean' },
+    color: { type: 'string' },
     children: { type: 'string' }
   }
 } satisfies Meta<typeof CollapseDescription>;
@@ -25,13 +26,31 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     open: true,
-    children: 'asjkdfhahjkfgashjkd'
+    children: 'asjkdfhahjkfgashjkd',
+    color: 'default'
   }
 };
 
-export const AdjustWidth: Story = {
+export const Error: Story = {
   args: {
     open: true,
-    children: 'asjkdfhahjkfgashjkd'
+    children: 'asjkdfhahjkfgashjkd',
+    color: 'error'
+  }
+};
+
+export const Success: Story = {
+  args: {
+    open: true,
+    children: 'asjkdfhahjkfgashjkd',
+    color: 'success'
+  }
+};
+
+export const Warning: Story = {
+  args: {
+    open: true,
+    children: 'asjkdfhahjkfgashjkd',
+    color: 'warning'
   }
 };
