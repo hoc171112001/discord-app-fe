@@ -2,7 +2,7 @@ import { useServerTranslation } from "@/config/i18n/server";
 import { getLanguage } from "@/utils";
 import React, { FC } from "react";
 
-interface IProps {}
+interface IProps { }
 
 /**
  * @author
@@ -10,7 +10,7 @@ interface IProps {}
  **/
 const lang = getLanguage();
 
-export const FormHeading: FC<IProps> = async (props) => {
+export const FormHeading: FC<IProps> = async () => {
   const { t } = await useServerTranslation(lang, "register");
   return (
     <h1 className="heading text-xl text-white font-semibold text-center mb-5">
