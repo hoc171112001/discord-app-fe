@@ -1,9 +1,9 @@
-"use client";
-import React, { FC } from "react";
+'use client';
+import React, { FC } from 'react';
 
 interface IProps {
   children: React.ReactNode;
-  type: "error";
+  type: 'error';
   htmlFor: string;
   required: boolean;
   showAdditionText?: boolean;
@@ -13,26 +13,20 @@ interface IProps {
 const generateClass = ({
   type,
   required,
-  showAdditionText,
+  showAdditionText
 }: {
   type: string;
   required: boolean;
   showAdditionText?: boolean;
 }) => {
-  const classArr = [
-    "text-desc",
-    "font-semibold",
-    "mb-2",
-    "text-xs",
-    "inline-block",
-  ];
+  const classArr = ['text-desc', 'font-semibold', 'mb-2', 'text-xs', 'inline-block'];
   if (showAdditionText && type) {
     classArr.push(`${type}-color`);
   }
   if (!showAdditionText && required) {
-    classArr.push("label-required");
+    classArr.push('label-required');
   }
-  return classArr.join(" ");
+  return classArr.join(' ');
 };
 
 /**
@@ -46,32 +40,29 @@ export const StatusAdditionLabel: FC<IProps> = ({
   htmlFor,
   additionText,
   required,
-  showAdditionText,
+  showAdditionText
 }) => {
   return (
-    <label
-      htmlFor={htmlFor}
-      className={`${generateClass({ type, required, showAdditionText })}`}
-    >
+    <label htmlFor={htmlFor} className={`${generateClass({ type, required, showAdditionText })}`}>
       {children}
       {showAdditionText && (
         <>
           <span
-            style={{ padding: "0 4px", margin: 0 }}
+            style={{ padding: '0 4px', margin: 0 }}
             className={`${generateClass({ type, required, showAdditionText })}`}
           >
             -
           </span>
           <span
             style={{
-              fontWeight: "300",
-              fontStyle: "italic",
-              margin: 0,
+              fontWeight: '300',
+              fontStyle: 'italic',
+              margin: 0
             }}
             className={`${generateClass({ type, required, showAdditionText })}`}
           >
             {additionText}
-          </span>{" "}
+          </span>{' '}
         </>
       )}
     </label>

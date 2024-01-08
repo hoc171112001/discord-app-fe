@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
 interface IProps {}
 
@@ -7,7 +7,7 @@ interface IProps {}
  * @function @DirectMessageChannel
  **/
 
-const DirectMessageChannel: FC<IProps> = (props) => {
+const DirectMessageChannel: FC<IProps> = () => {
   return <div>channel</div>;
 };
 
