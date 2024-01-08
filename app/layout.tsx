@@ -1,19 +1,19 @@
-import ThemeRegistry from "@/config/mui/ThemeRegistry";
-import StoreProvider from "@/lib/StoreProvider";
-import "@/styles/global.scss";
-import type { Metadata } from "next";
-import { Open_Sans } from "next/font/google";
-import { ReactNode } from "react";
+import ThemeRegistry from '@/config/mui/ThemeRegistry';
+import StoreProvider from '@/lib/StoreProvider';
+import '@/styles/global.scss';
+import type { Metadata } from 'next';
+import { Open_Sans } from 'next/font/google';
+import { ReactNode } from 'react';
 const opensans = Open_Sans({
-  weight: ["400", "300", "500", "700"],
-  subsets: ["latin"],
+  weight: ['400', '300', '500', '700'],
+  subsets: ['latin']
 });
 export const metadata: Metadata = {
-  title: "Discord lite",
-  description: "...",
+  title: 'Discord lite',
+  description: '...',
   icons: {
-    icon: "/fav.png",
-  },
+    icon: '/fav.png'
+  }
 };
 
 interface Root {
@@ -33,9 +33,9 @@ interface Root {
 export default async function RootLayout({ children }: Root) {
   // await setLanguage();
   return (
-    <html lang={"en"}>
+    <html lang={'en'}>
       <body className={opensans.className}>
-        <ThemeRegistry options={{ key: "mui" }}>
+        <ThemeRegistry options={{ key: 'mui' }}>
           <StoreProvider>{children}</StoreProvider>
         </ThemeRegistry>
       </body>

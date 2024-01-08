@@ -1,6 +1,6 @@
-import React, { FC } from "react";
+import React, { FC } from 'react';
 
-interface IProps { }
+interface IProps {}
 
 /**
  * @author

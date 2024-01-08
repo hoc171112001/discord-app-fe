@@ -1,17 +1,15 @@
 // "use client";
-import { useClientTranslation } from "@/config/i18n/client";
-import { StatusAdditionLabel } from "@/shared/StatusAdditionLabel";
-import { useShowAdditionText } from "@/shared/hooks/useShowAdditionText";
-import { BaseClientComponent } from "@/types";
-import { TextField } from "@mui/material";
-import { FC } from "react";
-import { RegisterFormValues } from ".";
-import { IFormEntries } from "./types";
+import { useClientTranslation } from '@/config/i18n/client';
+import { StatusAdditionLabel } from '@/shared/StatusAdditionLabel';
+import { useShowAdditionText } from '@/shared/hooks/useShowAdditionText';
+import { BaseClientComponent } from '@/types';
+import { TextField } from '@mui/material';
+import { FC } from 'react';
+import { RegisterFormValues } from '.';
+import { IFormEntries } from './types';
 
-const fieldName = "email";
-interface IProps
-  extends BaseClientComponent,
-  IFormEntries<RegisterFormValues> { }
+const fieldName = 'email';
+interface IProps extends BaseClientComponent, IFormEntries<RegisterFormValues> {}
 
 /**
  * @author
@@ -19,11 +17,11 @@ interface IProps
  **/
 
 export const Email: FC<IProps> = ({ register, control, isSubmited, lang }) => {
-  const { t } = useClientTranslation(lang as string, "register");
+  const { t } = useClientTranslation(lang as string, 'register');
   const { showAdditionText } = useShowAdditionText<RegisterFormValues>({
     control,
     fieldName,
-    isSubmited,
+    isSubmited
   });
 
   return (
@@ -33,18 +31,12 @@ export const Email: FC<IProps> = ({ register, control, isSubmited, lang }) => {
         htmlFor={fieldName}
         required={true}
         showAdditionText={showAdditionText}
-        additionText={t("required")}
+        additionText={t('required')}
       >
-        {t("emailLabel")}
+        {t('emailLabel')}
       </StatusAdditionLabel>
 
-      <TextField
-        size="small"
-        id={fieldName}
-        type={fieldName}
-        fullWidth
-        {...register(fieldName)}
-      />
+      <TextField size="small" id={fieldName} type={fieldName} fullWidth {...register(fieldName)} />
     </div>
   );
 };

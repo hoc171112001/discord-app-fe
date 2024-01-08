@@ -1,19 +1,19 @@
-import React, { FC } from 'react'
-import { LoginQrCode } from './QRcode'
-import { LoginInput } from './Form'
+import React, { FC } from 'react';
+import { LoginQrCode } from './QRcode';
+import { LoginInput } from './Form';
 
-interface IProps { }
+interface IProps {}
 
 /**
-* @author
-* @function @LoginForm
-**/
+ * @author
+ * @function @LoginForm
+ **/
 
 export const LoginForm: FC<IProps> = () => {
   return (
-    <div className='flex items-center justify-between'>
+    <div className="flex items-center justify-between">
       <LoginInput />
       <LoginQrCode />
     </div>
-  )
-}
+  );
+};

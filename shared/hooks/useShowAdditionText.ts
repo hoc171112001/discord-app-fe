@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Control, FieldValues, Path, useWatch } from "react-hook-form";
+import { useEffect, useState } from 'react';
+import { Control, FieldValues, Path, useWatch } from 'react-hook-form';
 
 type AddditionHook<T extends FieldValues> = {
   control?: Control<T>;
@@ -9,11 +9,7 @@ type AddditionHook<T extends FieldValues> = {
   isSubmited?: boolean;
 };
 
-export const useShowAdditionText = <T extends FieldValues>({
-  control,
-  fieldName,
-  isSubmited,
-}: AddditionHook<T>) => {
+export const useShowAdditionText = <T extends FieldValues>({ control, fieldName, isSubmited }: AddditionHook<T>) => {
   const watchedValue = useWatch({ control, name: fieldName });
   const [showAdditionText, setShowAdditionText] = useState<boolean>(false);
 
@@ -25,6 +21,6 @@ export const useShowAdditionText = <T extends FieldValues>({
 
   return {
     showAdditionText,
-    watchedValue,
+    watchedValue
   };
 };

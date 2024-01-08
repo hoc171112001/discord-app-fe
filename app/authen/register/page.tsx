@@ -1,8 +1,8 @@
-import { FC } from "react";
-import { AuthBox } from "@/shared/authBox";
-import { RegisterForm } from "@/components/Register/RegisterForm";
-import { Metadata } from "next";
-interface IProps { }
+import { FC } from 'react';
+import { AuthBox } from '@/shared/authBox';
+import { RegisterForm } from '@/components/Register/RegisterForm';
+import { Metadata } from 'next';
+interface IProps {}
 
 /**
  * @author
@@ -20,8 +20,8 @@ interface IProps { }
 
 export const metadata: Metadata = {
   title: 'Discord | register',
-  description: '...',
-}
+  description: '...'
+};
 
 const RegisterPage: FC<IProps> = async () => {
   // await debounce3Sec();

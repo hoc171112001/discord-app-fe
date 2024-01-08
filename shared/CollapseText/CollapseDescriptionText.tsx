@@ -1,5 +1,5 @@
-import { Collapse } from "@mui/material";
-import React, { FC } from "react";
+import { Collapse } from '@mui/material';
+import React, { FC } from 'react';
 
 interface IProps {
   open: boolean;
@@ -14,10 +14,7 @@ interface IProps {
 export const CollapseDescription: FC<IProps> = ({ open, children }) => {
   return (
     <Collapse in={open} collapsedSize={0}>
-      <span
-        className="text-desc text-small font-medium"
-        style={{ lineHeight: "34px" }}
-      >
+      <span className="text-desc text-small font-medium" style={{ lineHeight: '34px' }}>
         {children}
       </span>
     </Collapse>

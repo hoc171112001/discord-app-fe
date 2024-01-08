@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import { FormHeading } from "./formBody/FormHeading";
-import { FormBody } from "./formBody";
-import { getLanguage } from "@/utils";
-interface IProps { }
+import React, { FC } from 'react';
+import { FormHeading } from './formBody/FormHeading';
+import { FormBody } from './formBody';
+import { getLanguage } from '@/utils';
+interface IProps {}
 
 /**
  * @author
