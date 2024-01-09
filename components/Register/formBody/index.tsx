@@ -41,7 +41,7 @@ export const FormBody: FC<IProps> = ({ lang }) => {
   return (
     <form className="form_body" onSubmit={handleSubmit(onSubmit)}>
       <Email register={register} control={control} isSubmited={isSubmited} lang={lang} />
-      <DisplayName register={register} lang={lang} />
+      <DisplayName register={register} lang={lang} control={control} />
       <UserName register={register} control={control} lang={lang} isSubmited={isSubmited} />
       <Password register={register} control={control} lang={lang} isSubmited={isSubmited} />
       <DateOfBirth lang={lang} isSubmited={isSubmited} setFormValue={setValue} />
