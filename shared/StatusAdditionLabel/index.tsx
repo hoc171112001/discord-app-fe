@@ -1,7 +1,7 @@
 'use client';
 import React, { FC } from 'react';
 
-interface IProps {
+interface IProps extends React.DetailedHTMLProps<React.LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement> {
   children: React.ReactNode;
   type: 'error';
   htmlFor: string;
@@ -40,10 +40,11 @@ export const StatusAdditionLabel: FC<IProps> = ({
   htmlFor,
   additionText,
   required,
-  showAdditionText
+  showAdditionText,
+  ...props
 }) => {
   return (
-    <label htmlFor={htmlFor} className={`${generateClass({ type, required, showAdditionText })}`}>
+    <label htmlFor={htmlFor} className={`${generateClass({ type, required, showAdditionText })}`} {...props}>
       {children}
       {showAdditionText && (
         <>

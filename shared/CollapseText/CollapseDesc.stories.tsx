@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { CollapseDescription } from './CollapseDescriptionText';
+import { AuthBox } from '../authBox';
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -16,7 +17,8 @@ const meta = {
     open: { type: 'boolean' },
     color: { type: 'string' },
     children: { type: 'string' }
-  }
+  },
+  decorators: [Story => <AuthBox body={<Story />} />]
 } satisfies Meta<typeof CollapseDescription>;
 
 export default meta;

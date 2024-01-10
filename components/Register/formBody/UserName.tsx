@@ -66,6 +66,7 @@ export const UserName: FC<IProps> = ({ register, control, isSubmited, lang }) =>
         fullWidth
         onFocus={onOpen}
         onBlur={onBlurTextField}
+        required
       />
       <CollapseDescription open={open} color={getColor()}>
         {t('userNameDescription')}
