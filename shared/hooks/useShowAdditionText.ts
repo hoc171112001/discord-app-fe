@@ -16,6 +16,10 @@ export const useShowAdditionText = <T extends FieldValues>({ control, fieldName,
   useEffect(() => {
     if (!watchedValue && isSubmited) {
       setShowAdditionText(true);
+      return;
+    }
+    if (watchedValue) {
+      setShowAdditionText(false);
     }
   }, [watchedValue, isSubmited]);
 

@@ -15,9 +15,9 @@ interface IProps extends BaseClientComponent, IFormEntries<RegisterFormValues> {
  * @function @Password
  **/
 
-export const Password: FC<IProps> = ({ control, isSubmited, lang }) => {
+export const Password: FC<IProps> = ({ control, isSubmited, lang, register }) => {
   const { t } = useClientTranslation(lang as string, 'register');
-  const fieldName = 'userName';
+  const fieldName = 'password';
   const { showAdditionText } = useShowAdditionText<RegisterFormValues>({
     control,
     fieldName,
@@ -35,7 +35,7 @@ export const Password: FC<IProps> = ({ control, isSubmited, lang }) => {
       >
         {t('passwordLabel')}
       </StatusAdditionLabel>
-      <TextField size="small" id="password" type="password" fullWidth />
+      <TextField {...register(fieldName)} size="small" id={fieldName} type="password" fullWidth required />
     </div>
   );
 };

@@ -13,6 +13,7 @@ const selectProps: any = {
   IconComponent: () => <KeyboardArrowDownSharpIcon style={{ color: '#aaa' }} />,
   inputProps: { 'aria-label': 'Without label' },
   defaultValue: '',
+  required: true,
   MenuProps: {
     classes: { list: 'custom-select' },
     PaperProps: {

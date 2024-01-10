@@ -36,7 +36,7 @@ export const Email: FC<IProps> = ({ register, control, isSubmited, lang }) => {
         {t('emailLabel')}
       </StatusAdditionLabel>
 
-      <TextField size="small" id={fieldName} type={fieldName} fullWidth {...register(fieldName)} />
+      <TextField required size="small" id={fieldName} type={fieldName} fullWidth {...register(fieldName)} />
     </div>
   );
 };
